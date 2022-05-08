@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.VMs;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace Application.Services.CategoryService
         Task<List<CategoryVM>> GetCategories();
 
         Task<bool> IsCategoryExsist(string name);
+
+        Task<Category> GetByName(string name);
     }
 }

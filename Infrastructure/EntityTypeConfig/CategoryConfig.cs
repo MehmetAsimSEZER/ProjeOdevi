@@ -14,6 +14,7 @@ namespace Infrastructure.EntityTypeConfig
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.CategoryName).IsRequired();
+            //builder.Property(x => x.ParentCategory).IsRequired();
             base.Configure(builder);
         }
     }

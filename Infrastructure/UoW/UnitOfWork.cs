@@ -1,5 +1,4 @@
-﻿
-using Domain.Repositories;
+﻿using Domain.Repositories;
 using Domain.UoW;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +13,12 @@ namespace Infrastructure.UoW
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _appDbContext;
+
         public UnitOfWork(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext ?? throw new ArgumentNullException($"{nameof(appDbContext)} can't be a null");
         }
+
 
         private ICategoryRepository _categoryRepository;
         public ICategoryRepository CategoryRepository
@@ -30,6 +31,18 @@ namespace Infrastructure.UoW
                 return _categoryRepository;
             }
         }
+
+        private IUserRepository _userRepository;
+        public IUserRepository UserRepository
+        {
+            get 
+            {
+                if (_userRepository == null)
+                    _userRepository = new UserRepository(_appDbContext);
+                return _userRepository; 
+            }
+        }
+        
 
         public async Task Commit()
         {

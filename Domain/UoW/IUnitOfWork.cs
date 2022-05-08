@@ -11,6 +11,8 @@ namespace Domain.UoW
     {
         ICategoryRepository CategoryRepository { get; }
 
+        IUserRepository UserRepository { get; }
+
         Task Commit();
 
         Task ExecuteSqlRaw(string sql, params object[] parameteres);

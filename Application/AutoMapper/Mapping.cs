@@ -1,4 +1,6 @@
 ﻿using Application.DTOs;
+using Application.Models.DTOs;
+using Application.Models.VMs;
 using Application.VMs;
 using AutoMapper;
 using Domain.Entities;
@@ -18,6 +20,13 @@ namespace Application.AutoMapper
             CreateMap<Category, UpdateCategoryDTO>().ReverseMap();
             CreateMap<Category, CategoryVM>().ReverseMap();
             CreateMap<UpdateCategoryDTO, CategoryVM>().ReverseMap();
+
+
+            CreateMap<User, CreateUserDTO>().ReverseMap();
+            CreateMap<User, UpdateUserDTO>().ReverseMap();
+            CreateMap<User, LoginDTO>().ReverseMap();
+            CreateMap<User, UserVM>().ReverseMap();
+            CreateMap<UpdateUserDTO, UserVM>().ReverseMap();
         }
     }
 }

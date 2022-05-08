@@ -64,6 +64,13 @@ namespace Application.Services.CategoryService
             return model;
         }
 
+        public async Task<Category> GetByName(string name)
+        {
+            var category = await _unitOfWork.CategoryRepository.GetDefault(x => x.CategoryName == name);
+
+            return category;
+        }
+
         public async Task<List<CategoryVM>> GetCategories()
         {
             var categories = await _unitOfWork.CategoryRepository.GetFilteredList(
