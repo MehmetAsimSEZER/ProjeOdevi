@@ -28,7 +28,7 @@ namespace API.Controllers
 
 
         [HttpGet("{id:Guid}")]
-        public async Task<IActionResult> GetUsers(Guid id)
+        public async Task<IActionResult> GetUser(Guid id)
         {
             var user = await _userService.GetById(id);
 

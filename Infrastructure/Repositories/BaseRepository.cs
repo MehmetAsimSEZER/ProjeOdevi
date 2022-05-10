@@ -22,19 +22,25 @@ namespace Infrastructure.Repositories
             table = _appDbContext.Set<T>();
         }
 
-        public async Task<bool> Any(Expression<Func<T, bool>> expression)
-        {
-            return await table.AnyAsync(expression);
-        }
 
         public async Task Create(T entity)
         {
             await table.AddAsync(entity);
         }
 
+        public void Update(T entity)
+        {
+            _appDbContext.Entry<T>(entity).State = EntityState.Modified;
+        }
+
         public void Delete(T entity)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> Any(Expression<Func<T, bool>> expression)
+        {
+            return await table.AnyAsync(expression);
         }
 
         public async Task<T> GetDefault(Expression<Func<T, bool>> expression)
@@ -77,9 +83,6 @@ namespace Infrastructure.Repositories
                 return await query.Select(selector).Skip((pageIndex - 1) * pageSize).ToListAsync();
         }
 
-        public void Update(T entity)
-        {
-            _appDbContext.Entry<T>(entity).State = EntityState.Modified;
-        }
+
     }
 }

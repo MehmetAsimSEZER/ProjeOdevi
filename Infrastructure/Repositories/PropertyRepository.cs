@@ -1,5 +1,4 @@
-﻿
-using Domain.Entities;
+﻿using Domain.Models.Entities;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -9,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class PropertyRepository : BaseRepository<Property>, IPropertyRepository
     {
-        public CategoryRepository(AppDbContext appDbContext): base(appDbContext)
+        public PropertyRepository(AppDbContext appDbContext) : base(appDbContext)
         {
-
         }
     }
 }

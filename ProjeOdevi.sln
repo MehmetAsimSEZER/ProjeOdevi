@@ -7,19 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{346517CD-69F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FE9F39D4-BB7F-46EB-BECB-C409E29C3B25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{9A929E2A-3DAD-4540-B729-B97ADDDE4690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{9A929E2A-3DAD-4540-B729-B97ADDDE4690}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{E320A5B4-7E39-4270-A819-CDC09144B90D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{FCEC1ACB-10C6-4E6D-85A8-016E5BC5416B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{FCEC1ACB-10C6-4E6D-85A8-016E5BC5416B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F9FFED8C-5CF9-43E5-AA0A-4304E4BD673D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F9FFED8C-5CF9-43E5-AA0A-4304E4BD673D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{B7301172-6746-4CC1-BDBB-BC5995D34601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presantation", "Presantation\Presantation.csproj", "{742B6E1A-2825-4239-836D-42DD0E48115D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presantation", "Presantation\Presantation.csproj", "{742B6E1A-2825-4239-836D-42DD0E48115D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{ABA4EB63-A17E-4FEB-9438-CE27741FF2EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{ABA4EB63-A17E-4FEB-9438-CE27741FF2EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

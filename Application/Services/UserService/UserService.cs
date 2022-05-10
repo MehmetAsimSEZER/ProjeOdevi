@@ -18,12 +18,14 @@ namespace Application.Services.UserService
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper, SignInManager<User> signInManager)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper, SignInManager<User> signInManager, UserManager<User> userManager = null)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper)
@@ -43,7 +45,7 @@ namespace Application.Services.UserService
 
         }
 
-        public async Task<ProfileDTO> GetById(Guid id)
+        public async Task<UpdateUserDTO> GetById(Guid id)
         {
             UserVM user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
                 selector: x => new UserVM
@@ -51,14 +53,16 @@ namespace Application.Services.UserService
                     Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
+                    Adress = x.Adress,
+                    Phone = x.Phone,
                     Email = x.Email,
                 },
                 expression: x => x.Id == id &&
                             x.Status != Status.Passive);
 
-            ProfileDTO profile = _mapper.Map<ProfileDTO>(user);
+            UpdateUserDTO model = _mapper.Map<UpdateUserDTO>(user);
 
-            return profile;
+            return model;
         }
 
         public async Task<bool> IsUserExsist(string Email)
@@ -99,6 +103,8 @@ namespace Application.Services.UserService
                     Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
+                    Adress = x.Adress,
+                    Phone = x.Phone,
                     Email = x.Email,
                 },
                 expression: x => x.Status != Status.Passive,
@@ -116,6 +122,19 @@ namespace Application.Services.UserService
             user.DeleteDate = DateTime.Now;
 
             await _unitOfWork.Commit();
+        }
+
+        public async Task<IdentityResult> Register(RegisterDTO model)
+        {
+            var user = _mapper.Map<User>(model);
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, isPersistent: false);
+            }
+            return result;
         }
     }
 }

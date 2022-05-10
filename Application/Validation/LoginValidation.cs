@@ -12,8 +12,8 @@ namespace Application.Validation
     {
         public LoginValidation()
         {
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password");
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Enter a UserName");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Enter a Password");
         }
     }
 }

@@ -4,6 +4,7 @@ using Application.Models.VMs;
 using Application.VMs;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +26,15 @@ namespace Application.AutoMapper
             CreateMap<User, CreateUserDTO>().ReverseMap();
             CreateMap<User, UpdateUserDTO>().ReverseMap();
             CreateMap<User, LoginDTO>().ReverseMap();
+            CreateMap<User, RegisterDTO>().ReverseMap();
             CreateMap<User, UserVM>().ReverseMap();
             CreateMap<UpdateUserDTO, UserVM>().ReverseMap();
+
+
+            CreateMap<Product, CreateProductDTO>().ReverseMap();
+            CreateMap<Product, UpdateProductDTO>().ReverseMap();
+            CreateMap<Product, ProductVM>().ReverseMap();
+            CreateMap<UpdateProductDTO, ProductVM>().ReverseMap();
         }
     }
 }

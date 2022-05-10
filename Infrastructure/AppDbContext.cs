@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Models.Entities;
 using Infrastructure.EntityTypeConfig;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,18 @@ namespace Infrastructure
 
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<ProductProperty> ProductProperties { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new CategoryConfig());
             builder.ApplyConfiguration(new UserConfig());
+            builder.ApplyConfiguration(new CategoryConfig());
+            builder.ApplyConfiguration(new ProductConfig());
+            builder.ApplyConfiguration(new PropertyConfig());
+            builder.ApplyConfiguration(new ProductPropertyConfig());
 
             base.OnModelCreating(builder);
         }

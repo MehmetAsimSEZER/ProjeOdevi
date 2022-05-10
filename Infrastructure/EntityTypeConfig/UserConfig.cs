@@ -18,6 +18,7 @@ namespace Infrastructure.EntityTypeConfig
             builder.Property(x => x.Adress).IsRequired();
             builder.Property(x => x.Phone).IsRequired();
             builder.Property(x => x.Email).IsRequired();
+
             base.Configure(builder);
         }
     }

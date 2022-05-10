@@ -9,6 +9,7 @@ using Application.Services.UserService;
 using Application.Validation;
 using FluentValidation;
 using Application.Models.DTOs;
+using Application.Services.ProductService;
 
 namespace Application.IoC
 {
@@ -26,9 +27,11 @@ namespace Application.IoC
 
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
 
 
             builder.RegisterType<LoginValidation>().As<IValidator<LoginDTO>>().InstancePerLifetimeScope();
+            builder.RegisterType<RegisterValidation>().As<IValidator<RegisterDTO>>().InstancePerLifetimeScope();
 
 
             builder.Register(context => new MapperConfiguration(cfg =>

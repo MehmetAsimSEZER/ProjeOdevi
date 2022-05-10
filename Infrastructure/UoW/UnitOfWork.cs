@@ -42,7 +42,39 @@ namespace Infrastructure.UoW
                 return _userRepository; 
             }
         }
-        
+
+        private IProductRepository _productRepository;
+        public IProductRepository ProductRepository
+        {
+            get 
+            {
+                if (_productRepository == null)
+                    _productRepository = new ProductRepository(_appDbContext);
+                return _productRepository; 
+            }
+        }
+
+        private IPropertyRepository _propertyRepository;
+        public IPropertyRepository PropertyRepository
+        {
+            get 
+            { 
+                if(_propertyRepository == null)
+                    _propertyRepository = new PropertyRepository(_appDbContext);
+                return _propertyRepository; 
+            }
+        }
+
+        private IProductPropertyRepository _productPropertyRepository;
+        public IProductPropertyRepository ProductPropertyRepository
+        {
+            get 
+            {
+                if(_productPropertyRepository == null)
+                    _productPropertyRepository = new ProductPropertyRepository(_appDbContext);
+                return _productPropertyRepository; 
+            }
+        }
 
         public async Task Commit()
         {

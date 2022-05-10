@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EntityTypeConfig
 {
-    internal class CategoryConfig : BaseEntityConfig<Category>
+    internal class PropertyConfig : BaseEntityConfig<Property>
     {
-        public override void Configure(EntityTypeBuilder<Category> builder)
+        public override void Configure(EntityTypeBuilder<Property> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.CategoryName).IsRequired();
+            builder.Property(x => x.Name).IsRequired();
+
             base.Configure(builder);
         }
     }

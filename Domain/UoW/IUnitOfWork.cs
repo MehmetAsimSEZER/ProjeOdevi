@@ -13,6 +13,12 @@ namespace Domain.UoW
 
         IUserRepository UserRepository { get; }
 
+        IProductRepository ProductRepository { get; }
+
+        IPropertyRepository PropertyRepository { get; }
+
+        IProductPropertyRepository ProductPropertyRepository { get; }
+
         Task Commit();
 
         Task ExecuteSqlRaw(string sql, params object[] parameteres);
