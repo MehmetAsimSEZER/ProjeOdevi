@@ -1,8 +1,9 @@
-using Application.IoC;
+﻿using Application.IoC;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,13 +16,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("CMSAPI", new Microsoft.OpenApi.Models.OpenApiInfo()
+    options.SwaggerDoc("API", new OpenApiInfo()
     {
         Title = "E-Commerce API",
         Version = "v1",
         Description = "RestFul API",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
-
+        Contact = new OpenApiContact()
+        {
+            Email = "mehmetasim89@gmail.com",
+            Name = "Mehmet Asım Sezer",
+            Url = new Uri("https://github.com/MehmetAsimSEZER")
+        }
     });
 
 });
@@ -47,7 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/CMSAPI/swagger.json", "E-Commerce API");
+        options.SwaggerEndpoint("/swagger/API/swagger.json", "E-Commerce API");
     });
 }
 
