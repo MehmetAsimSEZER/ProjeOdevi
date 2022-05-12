@@ -17,6 +17,10 @@ namespace API.Controllers
             _categoryService = categoryService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
@@ -25,6 +29,11 @@ namespace API.Controllers
             return Ok(categories);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetCategory(Guid id)
         {
@@ -33,6 +42,11 @@ namespace API.Controllers
             return Ok(category);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostCategories([FromBody] CreateCategoryDTO model)
         {
@@ -60,7 +74,11 @@ namespace API.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> PutCategories([FromBody] UpdateCategoryDTO model)
         {
@@ -88,7 +106,11 @@ namespace API.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteCategories(Guid id)
         {

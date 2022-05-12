@@ -35,6 +35,17 @@ namespace Application.AutoMapper
             CreateMap<Product, UpdateProductDTO>().ReverseMap();
             CreateMap<Product, ProductVM>().ReverseMap();
             CreateMap<UpdateProductDTO, ProductVM>().ReverseMap();
+
+            CreateMap<Property, CreatePropertyDTO>().ReverseMap();
+            CreateMap<Property, UpdatePropertyDTO>().ReverseMap();
+            CreateMap<Property, PropertyVM>().ReverseMap();
+            CreateMap<UpdatePropertyDTO, PropertyVM>().ReverseMap();
+
+            CreateMap<ProductProperty, CreateProductPropertyDTO>().ReverseMap();
+            CreateMap<ProductProperty, UpdateProductPropertyDTO>().ReverseMap();
+            CreateMap<ProductProperty, ProductPropertyVM>().ReverseMap();
+            CreateMap<UpdateProductPropertyDTO, ProductPropertyVM>().ReverseMap();
+
         }
     }
 }

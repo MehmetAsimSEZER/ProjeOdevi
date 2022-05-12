@@ -18,6 +18,10 @@ namespace API.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
@@ -26,7 +30,11 @@ namespace API.Controllers
             return Ok(user);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetUser(Guid id)
         {
@@ -35,6 +43,11 @@ namespace API.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostUsers(CreateUserDTO user)
         {
@@ -62,6 +75,11 @@ namespace API.Controllers
                 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> PutUsers([FromBody] UpdateUserDTO user)
         {
@@ -90,7 +108,11 @@ namespace API.Controllers
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteUsers(Guid id)
         {

@@ -17,6 +17,10 @@ namespace API.Controllers
             _productService = productService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
@@ -25,6 +29,11 @@ namespace API.Controllers
             return Ok(products);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetProduct(Guid id)
         {
@@ -33,6 +42,11 @@ namespace API.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostProducts([FromBody] CreateProductDTO model)
         {
@@ -59,6 +73,11 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> PutProducts([FromBody] UpdateProductDTO model)
         {
@@ -85,6 +104,11 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteProducts(Guid id)
         {

@@ -10,6 +10,8 @@ using Application.Validation;
 using FluentValidation;
 using Application.Models.DTOs;
 using Application.Services.ProductService;
+using Application.Services.PropertyService;
+using Application.Services.ProductPropertyService;
 
 namespace Application.IoC
 {
@@ -28,6 +30,8 @@ namespace Application.IoC
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+            builder.RegisterType<PropertyService>().As<IPropertyService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductPropertyService>().As<IProductPropertyService>().InstancePerLifetimeScope();
 
 
             builder.RegisterType<LoginValidation>().As<IValidator<LoginDTO>>().InstancePerLifetimeScope();
