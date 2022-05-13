@@ -41,7 +41,7 @@ namespace Application.Services.ProductService
             await _unitOfWork.Commit();
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             var product = await _unitOfWork.ProductRepository.GetDefault(x => x.Id == id);
 
@@ -52,7 +52,7 @@ namespace Application.Services.ProductService
 
         }
 
-        public async Task<UpdateProductDTO> GetById(Guid id)
+        public async Task<UpdateProductDTO> GetById(int id)
         {
             var product = await _unitOfWork.ProductRepository.GetFilteredFirstOrDefault(
                 selector: x => new ProductVM

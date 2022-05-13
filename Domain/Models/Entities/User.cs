@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class User : IBase<Guid>,IBaseEntity
+    public class User : IBase<int>,IBaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Adress { get; set; }

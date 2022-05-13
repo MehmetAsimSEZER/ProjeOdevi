@@ -45,7 +45,7 @@ namespace Application.Services.UserService
 
         }
 
-        public async Task<UpdateUserDTO> GetById(Guid id)
+        public async Task<UpdateUserDTO> GetById(int id)
         {
             UserVM user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
                 selector: x => new UserVM
@@ -113,7 +113,7 @@ namespace Application.Services.UserService
             return users;
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             var user = await _unitOfWork.UserRepository.GetDefault(x => x.Id == id);
 

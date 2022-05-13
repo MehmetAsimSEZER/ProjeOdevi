@@ -12,8 +12,8 @@ namespace Application.Services.ProductService
     {
         Task Create(CreateProductDTO model);
         Task Update(UpdateProductDTO model);
-        Task Delete(Guid id);
-        Task<UpdateProductDTO> GetById(Guid id);
+        Task Delete(int id);
+        Task<UpdateProductDTO> GetById(int id);
         Task<List<ProductVM>> GetProducts();
         Task<bool> IsProductExsist(string name);
 

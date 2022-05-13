@@ -13,8 +13,8 @@ namespace Application.Services.CategoryService
     {
         Task Create(CreateCategoryDTO model);
         Task Update(UpdateCategoryDTO model);
-        Task Delete(Guid id);
-        Task<UpdateCategoryDTO> GetById(Guid id);
+        Task Delete(int id);
+        Task<UpdateCategoryDTO> GetById(int id);
         Task<List<CategoryVM>> GetCategories();
 
         Task<bool> IsCategoryExsist(string name);

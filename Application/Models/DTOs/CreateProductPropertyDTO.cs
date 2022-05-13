@@ -11,8 +11,8 @@ namespace Application.Models.DTOs
     {
         public string Value { get; set; }
 
-        public Guid ProductId { get; set; }
-        public Guid PropertyId { get; set; }
+        public int? ProductId { get; set; }
+        public int? PropertyId { get; set; }
         public DateTime CreateDate => DateTime.Now;
         public Status Status => Status.Active;
     }

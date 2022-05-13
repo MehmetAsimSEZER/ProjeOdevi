@@ -14,10 +14,10 @@ namespace Application.Services.UserService
         Task CreateUser(CreateUserDTO model);
         Task<IdentityResult> Register(RegisterDTO model);
         Task<SignInResult> Login(LoginDTO model);
-        Task Delete(Guid id);
+        Task Delete(int id);
         Task LogOut();
         Task UpdateUser(UpdateUserDTO model);
-        Task<UpdateUserDTO> GetById(Guid id);
+        Task<UpdateUserDTO> GetById(int id);
         Task<List<UserVM>> GetUsers();
         Task<bool> IsUserExsist(string Email);
     }

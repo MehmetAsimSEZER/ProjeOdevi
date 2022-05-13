@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Category:IBase<Guid>,IBaseEntity
+    public class Category:IBase<int>,IBaseEntity
     {
-        public Guid Id { get ; set; }
+        public int Id { get ; set; }
 
         public string CategoryName { get; set; }
 

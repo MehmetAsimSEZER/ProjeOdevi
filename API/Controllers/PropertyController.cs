@@ -59,5 +59,17 @@ namespace API.Controllers
                 return BadRequest(ModelState);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProperty(int id)
+        {
+            await _propertyService.Delete(id);
+            return Ok();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.Models.DTOs;
+using Application.Models.VMs;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Entities;
@@ -41,7 +42,7 @@ namespace Application.Services.ProductPropertyService
             await _unitOfWork.Commit();
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             var result = await _unitOfWork.ProductPropertyRepository.GetDefault(x => x.Id == id);
 
@@ -58,6 +59,16 @@ namespace Application.Services.ProductPropertyService
             return result;
         }
 
-
+        public async Task<List<ProductPropertyVM>> Get()
+        {
+            var list = await _unitOfWork.ProductPropertyRepository.GetFilteredList(
+                selector: x => new ProductPropertyVM
+                {
+                    Id = x.Id,
+                    Value = x.Value,
+                },
+                expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.Value));
+            return list;
+        }
     }
 }

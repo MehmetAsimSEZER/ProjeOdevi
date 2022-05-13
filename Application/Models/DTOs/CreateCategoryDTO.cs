@@ -12,8 +12,6 @@ namespace Application.DTOs
     {
         public string CategoryName { get; set; }
 
-        public Category? ParentCategory { get; set; }
-
         public DateTime CreateDate => DateTime.Now;
 
         public Status Status => Status.Active;

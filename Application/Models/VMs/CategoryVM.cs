@@ -10,11 +10,11 @@ namespace Application.VMs
 {
     public class CategoryVM
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string CategoryName { get; set; }
 
-        public Category? ParentCategory { get; set; }
+
 
     }
 }

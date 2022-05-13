@@ -1,4 +1,5 @@
 ﻿
+using Application.VMs;
 using Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Application.Models.DTOs
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string ImagePath { get; set; }
-        public Guid CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public DateTime CreateDate => DateTime.Now;
         public Status Status => Status.Active;
     }

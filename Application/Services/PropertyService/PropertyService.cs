@@ -41,7 +41,7 @@ namespace Application.Services.PropertyService
             await _unitOfWork.Commit();
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             var property = await _unitOfWork.PropertyRepository.GetDefault(x => x.Id == id);
 

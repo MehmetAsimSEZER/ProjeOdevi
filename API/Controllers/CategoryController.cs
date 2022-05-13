@@ -34,8 +34,8 @@ namespace API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id:Guid}")]
-        public async Task<IActionResult> GetCategory(Guid id)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetCategory(int id)
         {
             var category = await _categoryService.GetById(id);
 
@@ -112,7 +112,7 @@ namespace API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<IActionResult> DeleteCategories(Guid id)
+        public async Task<IActionResult> DeleteCategories(int id)
         {
             await _categoryService.Delete(id);
             return Ok();

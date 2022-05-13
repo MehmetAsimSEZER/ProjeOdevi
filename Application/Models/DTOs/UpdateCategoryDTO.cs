@@ -10,11 +10,9 @@ namespace Application.DTOs
 {
     public class UpdateCategoryDTO
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string CategoryName { get; set; }
-
-        public Category? ParentCategory { get; set; }
 
         public DateTime UpdateDate => DateTime.Now;
 

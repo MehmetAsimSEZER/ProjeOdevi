@@ -35,8 +35,8 @@ namespace API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id:Guid}")]
-        public async Task<IActionResult> GetUser(Guid id)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetUser(int id)
         {
             var user = await _userService.GetById(id);
 
@@ -114,7 +114,7 @@ namespace API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<IActionResult> DeleteUsers(Guid id)
+        public async Task<IActionResult> DeleteUsers(int id)
         {
             await _userService.Delete(id);
             return Ok();

@@ -12,7 +12,7 @@ namespace Application.Services.PropertyService
     {
         Task Create(CreatePropertyDTO model);
         Task Update(UpdatePropertyDTO model);
-        Task Delete(Guid id);
+        Task Delete(int id);
         Task<List<PropertyVM>> GetProperties();
         Task<bool> IsProductExsist(string name);
     }

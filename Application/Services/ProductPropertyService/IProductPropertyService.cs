@@ -1,4 +1,5 @@
 ﻿using Application.Models.DTOs;
+using Application.Models.VMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace Application.Services.ProductPropertyService
     {
         Task Create(CreateProductPropertyDTO model);
         Task Update(UpdateProductPropertyDTO model);
-        Task Delete(Guid id);
+        Task Delete(int id);
+        Task<List<ProductPropertyVM>> Get();
         Task<bool> IsProductExsist(string value);
     }
 }

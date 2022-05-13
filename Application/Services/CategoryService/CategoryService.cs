@@ -34,7 +34,7 @@ namespace Application.Services.CategoryService
             await _unitOfWork.Commit();
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             var category = await _unitOfWork.CategoryRepository.GetDefault(x => x.Id == id);
 
@@ -46,14 +46,13 @@ namespace Application.Services.CategoryService
 
         }
 
-        public async Task<UpdateCategoryDTO> GetById(Guid id)
+        public async Task<UpdateCategoryDTO> GetById(int id)
         {
             var category = await _unitOfWork.CategoryRepository.GetFilteredFirstOrDefault(
                 selector: x => new CategoryVM
                 {
                     Id = x.Id,
                     CategoryName = x.CategoryName,
-                    ParentCategory = x.ParentCategory,
 
                 },
                 expression: x => x.Id == id &&
@@ -78,7 +77,6 @@ namespace Application.Services.CategoryService
                 {
                     Id = x.Id,
                     CategoryName = x.CategoryName,
-                    ParentCategory = x.ParentCategory,
                 },
                 expression: x => x.Status != Status.Passive,
                 orderBy: x => x.OrderBy(x => x.CategoryName));

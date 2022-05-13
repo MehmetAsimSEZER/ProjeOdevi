@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.Entities
 {
-    public class ProductProperty : IBase<Guid>, IBaseEntity
+    public class ProductProperty : IBase<int>, IBaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Value { get; set; }
 
-        public Guid ProductId { get; set; }
+        public int ProductId { get; set; }
         public Product Product { get; set; }
 
-        public Guid PropertyId { get; set; }
+        public int PropertyId { get; set; }
         public Property Property { get; set; }
 
         public DateTime CreateDate { get; set; }
@@ -24,5 +24,6 @@ namespace Domain.Models.Entities
         public DateTime? DeleteDate { get; set; }
 
         public Status Status { get; set; }
+
     }
 }

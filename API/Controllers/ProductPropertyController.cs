@@ -20,6 +20,17 @@ namespace API.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var value = await _productPropertyService.Get();
+            return Ok(value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
@@ -27,19 +38,9 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var value = await _productPropertyService.IsProductExsist(model.Value);
-
-                if (value != false)
-                {
-                    ModelState.AddModelError(string.Empty, "The ProductProperty already exist..!");
-                    return BadRequest(ModelState);
-                }
-                else
-                {
-                    await _productPropertyService.Create(model);
-                    ModelState.AddModelError(string.Empty, "The ProductProperty has been created..!");
-                    return Ok(ModelState);
-                }
+                await _productPropertyService.Create(model);
+                ModelState.AddModelError(string.Empty, "The ProductProperty has been created..!");
+                return Ok(ModelState);
             }
             else
             {
@@ -58,25 +59,27 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var value = await _productPropertyService.IsProductExsist(model.Value);
-
-                if (value != false)
-                {
-                    ModelState.AddModelError(String.Empty, "The ProductProperty already exist..!");
-                    return BadRequest(ModelState);
-                }
-                else
-                {
-                    await _productPropertyService.Update(model);
-                    ModelState.AddModelError(String.Empty, "The ProductProperty has been modified..!");
-                    return Ok(ModelState);
-                }
+                await _productPropertyService.Update(model);
+                ModelState.AddModelError(string.Empty, "The ProductProperty has been created..!");
+                return Ok(ModelState);
             }
             else
             {
-                ModelState.AddModelError(String.Empty, "The ProductProperty hasn't been modified..!");
+                ModelState.AddModelError(String.Empty, "The ProductProperty hasn't been created..!");
                 return BadRequest(ModelState);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _productPropertyService.Delete(id);
+            return Ok();
         }
     }
 }
