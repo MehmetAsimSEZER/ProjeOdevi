@@ -35,7 +35,7 @@ namespace API.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> PostProperty([FromBody] CreatePropertyDTO model)
+        public async Task<IActionResult> PostProperties([FromBody] CreatePropertyDTO model)
         {
             if (ModelState.IsValid)
             {
@@ -63,10 +63,41 @@ namespace API.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<IActionResult> PutProperties([FromBody] UpdatePropertyDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                var name = await _propertyService.IsProductExsist(model.Name);
+
+                if (name != false)
+                {
+                    ModelState.AddModelError(String.Empty, "The Property already exist..!");
+                    return BadRequest(ModelState);
+                }
+                else
+                {
+                    await _propertyService.Update(model);
+                    ModelState.AddModelError(String.Empty, "The Property has been modified..!");
+                    return Ok(ModelState);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(String.Empty, "The Property hasn't been modified..!");
+                return BadRequest(ModelState);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<IActionResult> DeleteProperty(int id)
+        public async Task<IActionResult> DeleteProperties(int id)
         {
             await _propertyService.Delete(id);
             return Ok();
