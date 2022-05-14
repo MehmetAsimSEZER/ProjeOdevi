@@ -19,6 +19,8 @@ namespace Domain.UoW
 
         IProductPropertyRepository ProductPropertyRepository { get; }
 
+        IParentCategoryRepository ParentCategoryRepository { get; }
+
         Task Commit();
 
         Task ExecuteSqlRaw(string sql, params object[] parameteres);

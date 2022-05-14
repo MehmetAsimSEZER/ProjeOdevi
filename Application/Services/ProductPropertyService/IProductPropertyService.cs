@@ -14,6 +14,6 @@ namespace Application.Services.ProductPropertyService
         Task Update(UpdateProductPropertyDTO model);
         Task Delete(int id);
         Task<List<ProductPropertyVM>> Get();
-        Task<bool> IsProductExsist(string value);
+        Task<bool> IsProductPropertyExsist(string value);
     }
 }

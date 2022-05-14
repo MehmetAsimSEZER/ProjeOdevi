@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EntityTypeConfig
 {
-    internal class PropertyConfig : BaseEntityConfig<Property>
+    internal class ParentCategoryConfig : BaseEntityConfig<ParentCategory>
     {
-        public override void Configure(EntityTypeBuilder<Property> builder)
+        public override void Configure(EntityTypeBuilder<ParentCategory> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.PropertyName).IsRequired();
+            builder.Property(x => x.Name).IsRequired();
 
             base.Configure(builder);
         }

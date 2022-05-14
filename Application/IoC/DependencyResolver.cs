@@ -12,6 +12,7 @@ using Application.Models.DTOs;
 using Application.Services.ProductService;
 using Application.Services.PropertyService;
 using Application.Services.ProductPropertyService;
+using Application.Services.ParentCategoryService;
 
 namespace Application.IoC
 {
@@ -32,6 +33,7 @@ namespace Application.IoC
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
             builder.RegisterType<PropertyService>().As<IPropertyService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductPropertyService>().As<IProductPropertyService>().InstancePerLifetimeScope();
+            builder.RegisterType<ParentCategoryService>().As<IParentCategoryService>().InstancePerLifetimeScope();
 
 
             builder.RegisterType<LoginValidation>().As<IValidator<LoginDTO>>().InstancePerLifetimeScope();

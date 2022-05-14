@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Application.Models.VMs
 {
-    public class PropertyVM
+    public class ParentCategoryVM
     {
         public int Id { get; set; }
 
-        public string PropertyName { get; set; }
+        public string Name { get; set; }
     }
 }

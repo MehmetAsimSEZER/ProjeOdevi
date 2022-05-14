@@ -14,6 +14,8 @@ namespace Infrastructure.EntityTypeConfig
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.CategoryName).IsRequired();
+
+            builder.HasOne(x => x.ParentCategory).WithMany(x => x.Categories).HasForeignKey(x => x.ParentCategoryId);
             base.Configure(builder);
         }
     }

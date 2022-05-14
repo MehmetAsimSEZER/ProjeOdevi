@@ -15,13 +15,14 @@ namespace Domain.Entities
 
         public string CategoryName { get; set; }
 
-        public Category? ParentCategory { get; set; }
-
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
 
         public Status Status { get; set; }
+
+        public int ParentCategoryId { get; set; }
+        public ParentCategory ParentCategory { get; set; }
 
         public List<Product> Products { get; set; }
 

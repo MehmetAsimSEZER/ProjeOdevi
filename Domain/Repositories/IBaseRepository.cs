@@ -26,8 +26,6 @@ namespace Domain.Repositories
                                                      Expression<Func<T, bool>> expression,
                                                      Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                                      Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
-                                                     bool disableTracing = true,
-                                                     int pageIndex = 1,
-                                                     int pageSize = 3);
+                                                     bool disableTracing = true, int pageIndex = 1, int pageSize = 3);
     }
 }

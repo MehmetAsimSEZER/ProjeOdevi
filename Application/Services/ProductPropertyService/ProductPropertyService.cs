@@ -52,7 +52,7 @@ namespace Application.Services.ProductPropertyService
             await _unitOfWork.Commit(); 
         }
 
-        public async Task<bool> IsProductExsist(string value)
+        public async Task<bool> IsProductPropertyExsist(string value)
         {
             var result = await _unitOfWork.ProductPropertyRepository.Any(x => x.Value == value);
 

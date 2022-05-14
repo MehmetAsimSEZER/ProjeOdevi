@@ -76,6 +76,18 @@ namespace Infrastructure.UoW
             }
         }
 
+        private IParentCategoryRepository _parentCategoryRepository;
+
+        public IParentCategoryRepository ParentCategoryRepository
+        {
+            get 
+            {
+                if (_parentCategoryRepository == null)
+                    _parentCategoryRepository = new ParentCategoryRepository(_appDbContext);
+                return _parentCategoryRepository; 
+            }
+        }
+
         public async Task Commit()
         {
             await _appDbContext.SaveChangesAsync();

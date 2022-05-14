@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Application.Models.DTOs
 {
-    public class CreatePropertyDTO
+    public class CreateParentCategoryDTO
     {
-        public string PropertyName { get; set; }
+        public string Name { get; set; }
+
         public DateTime CreateDate => DateTime.Now;
+
         public Status Status => Status.Active;
     }
 }

@@ -51,9 +51,9 @@ namespace Application.Services.PropertyService
             await _unitOfWork.Commit();
         }
 
-        public async Task<bool> IsProductExsist(string name)
+        public async Task<bool> IsPropertyExsist(string name)
         {
-            var result = await _unitOfWork.PropertyRepository.Any(x => x.Name == name);
+            var result = await _unitOfWork.PropertyRepository.Any(x => x.PropertyName == name);
 
             return result;
         }
@@ -64,9 +64,9 @@ namespace Application.Services.PropertyService
                 selector: x => new PropertyVM
                 {
                     Id = x.Id,
-                    Name = x.Name
+                    PropertyName = x.PropertyName
                 },
-                expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.Name));
+                expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.PropertyName));
             return properties;
         }
     }

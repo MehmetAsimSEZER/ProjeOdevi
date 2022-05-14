@@ -54,6 +54,7 @@ namespace Application.Services.CategoryService
                     Id = x.Id,
                     CategoryName = x.CategoryName,
 
+
                 },
                 expression: x => x.Id == id &&
                                  x.Status != Status.Passive);

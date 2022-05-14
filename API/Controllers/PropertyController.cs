@@ -39,7 +39,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var name = await _propertyService.IsProductExsist(model.Name);
+                var name = await _propertyService.IsPropertyExsist(model.PropertyName);
 
                 if (name != false)
                 {
@@ -70,7 +70,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var name = await _propertyService.IsProductExsist(model.Name);
+                var name = await _propertyService.IsPropertyExsist(model.PropertyName);
 
                 if (name != false)
                 {

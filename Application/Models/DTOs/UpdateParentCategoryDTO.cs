@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Application.Models.DTOs
 {
-    public class UpdatePropertyDTO
+    public class UpdateParentCategoryDTO
     {
         public int Id { get; set; }
 
-        public string PropertyName { get; set; }
+        public string Name { get; set; }
 
         public DateTime UpdateDate => DateTime.Now;
 

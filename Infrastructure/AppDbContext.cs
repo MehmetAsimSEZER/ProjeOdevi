@@ -23,6 +23,7 @@ namespace Infrastructure
         public DbSet<Product> Products { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<ProductProperty> ProductProperties { get; set; }
+        public DbSet<ParentCategory> ParentCategories { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -32,6 +33,7 @@ namespace Infrastructure
             builder.ApplyConfiguration(new ProductConfig());
             builder.ApplyConfiguration(new PropertyConfig());
             builder.ApplyConfiguration(new ProductPropertyConfig());
+            builder.ApplyConfiguration(new ParentCategoryConfig());
 
             base.OnModelCreating(builder);
         }
