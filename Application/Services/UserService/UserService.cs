@@ -5,11 +5,7 @@ using Domain.Entities;
 using Domain.Enums;
 using Domain.UoW;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Application.Services.UserService
 {
@@ -74,18 +70,6 @@ namespace Application.Services.UserService
 
 
 
-        public async Task<SignInResult> Login(LoginDTO model)
-        {
-            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
-
-            return result;
-        }
-
-        public async Task LogOut()
-        {
-            await _signInManager.SignOutAsync();
-        }
-
         public async Task UpdateUser(UpdateUserDTO model)
         {
             var user = _mapper.Map<User>(model);
@@ -124,6 +108,20 @@ namespace Application.Services.UserService
             await _unitOfWork.Commit();
         }
 
+
+        public async Task<SignInResult> Login(LoginDTO model)
+        {
+            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
+
+            return result;
+        }
+
+        public async Task LogOut()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
+
         public async Task<IdentityResult> Register(RegisterDTO model)
         {
             var user = _mapper.Map<User>(model);
@@ -136,5 +134,6 @@ namespace Application.Services.UserService
             }
             return result;
         }
+
     }
 }

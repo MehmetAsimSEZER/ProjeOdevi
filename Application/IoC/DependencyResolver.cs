@@ -1,5 +1,4 @@
-﻿using Module = Autofac.Module;
-using Autofac;
+﻿using Autofac;
 using AutoMapper;
 using Application.AutoMapper;
 using Application.Services.CategoryService;

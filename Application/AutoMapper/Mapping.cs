@@ -25,10 +25,11 @@ namespace Application.AutoMapper
 
             CreateMap<User, CreateUserDTO>().ReverseMap();
             CreateMap<User, UpdateUserDTO>().ReverseMap();
-            CreateMap<User, LoginDTO>().ReverseMap();
-            CreateMap<User, RegisterDTO>().ReverseMap();
             CreateMap<User, UserVM>().ReverseMap();
             CreateMap<UpdateUserDTO, UserVM>().ReverseMap();
+
+            CreateMap<User, LoginDTO>().ReverseMap();
+            CreateMap<User, RegisterDTO>().ReverseMap();
 
 
             CreateMap<Product, CreateProductDTO>().ReverseMap();
