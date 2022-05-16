@@ -85,20 +85,10 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var name = await _userService.IsUserExsist(user.Email);
+                await _userService.UpdateUser(user);
+                ModelState.AddModelError(String.Empty, "The Users has been modified..!");
+                return Ok(ModelState);
 
-                if (name != false)
-                {
-                    ModelState.AddModelError(String.Empty, "The Users already exist..!");
-                    return BadRequest(ModelState);
-                }
-
-                else
-                {
-                    await _userService.UpdateUser(user);
-                    ModelState.AddModelError(String.Empty, "The Users has been modified..!");
-                    return Ok(ModelState);
-                }
             }
             else
             {

@@ -39,9 +39,20 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _parentCategoryService.Create(model);
-                ModelState.AddModelError(String.Empty, "The Parentcategory has been created..!");
-                return Ok(ModelState);
+                var name = await _parentCategoryService.IsParentCategoryExsist(model.Name);
+
+                if (name != false)
+                {
+                    ModelState.AddModelError(String.Empty, "The Parentcategory already exist..!");
+                    return BadRequest(ModelState);
+                }
+
+                else
+                {
+                    await _parentCategoryService.Create(model);
+                    ModelState.AddModelError(String.Empty, "The Parentcategory has been created..!");
+                    return Ok(ModelState);
+                }
             }
             else
             {

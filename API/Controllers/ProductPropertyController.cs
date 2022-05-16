@@ -38,9 +38,20 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _productPropertyService.Create(model);
-                ModelState.AddModelError(string.Empty, "The ProductProperty has been created..!");
-                return Ok(ModelState);
+                var name = await _productPropertyService.IsProductPropertyExsist(model.Value);
+
+                if (name != false)
+                {
+                    ModelState.AddModelError(String.Empty, "The Parentcategory already exist..!");
+                    return BadRequest(ModelState);
+                }
+
+                else
+                {
+                    await _productPropertyService.Create(model);
+                    ModelState.AddModelError(string.Empty, "The ProductProperty has been created..!");
+                    return Ok(ModelState);
+                }
             }
             else
             {

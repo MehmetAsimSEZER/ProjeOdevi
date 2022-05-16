@@ -14,6 +14,8 @@ namespace Application.VMs
 
         public string CategoryName { get; set; }
 
+        public string ParentCategoryName { get; set; }
+
 
 
     }

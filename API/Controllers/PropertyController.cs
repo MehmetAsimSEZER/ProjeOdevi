@@ -70,19 +70,10 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var name = await _propertyService.IsPropertyExsist(model.PropertyName);
+                 await _propertyService.Update(model);
+                 ModelState.AddModelError(String.Empty, "The Property has been modified..!");
+                 return Ok(ModelState);
 
-                if (name != false)
-                {
-                    ModelState.AddModelError(String.Empty, "The Property already exist..!");
-                    return BadRequest(ModelState);
-                }
-                else
-                {
-                    await _propertyService.Update(model);
-                    ModelState.AddModelError(String.Empty, "The Property has been modified..!");
-                    return Ok(ModelState);
-                }
             }
             else
             {

@@ -21,8 +21,11 @@ namespace Domain.UoW
 
         IParentCategoryRepository ParentCategoryRepository { get; }
 
+        IShoppingCartRepository ShoppingCartRepository { get; }
+
+        IProductCartRelRepository ProductCartRelRepository { get; }
+
         Task Commit();
 
-        Task ExecuteSqlRaw(string sql, params object[] parameteres);
     }
 }

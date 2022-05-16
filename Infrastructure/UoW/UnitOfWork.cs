@@ -90,6 +90,30 @@ namespace Infrastructure.UoW
             }
         }
 
+        private IShoppingCartRepository _shoppingCartRepository;
+
+        public IShoppingCartRepository ShoppingCartRepository
+        {
+            get
+            {
+                if (_shoppingCartRepository == null)
+                    _shoppingCartRepository = new ShoppingCartRepository(_appDbContext);
+                return _shoppingCartRepository;
+            }
+        }
+
+        private ProductCartRelRepository _productCartRelRepository;
+
+        public IProductCartRelRepository ProductCartRelRepository
+        {
+            get 
+            { 
+                if(_productCartRelRepository == null)
+                    _productCartRelRepository = new ProductCartRelRepository(_appDbContext);
+                return _productCartRelRepository; 
+            }
+        }
+
         public async Task Commit()
         {
             await _appDbContext.SaveChangesAsync();
@@ -113,9 +137,6 @@ namespace Infrastructure.UoW
                 await _appDbContext.DisposeAsync();
         }
 
-        public async Task ExecuteSqlRaw(string sql, params object[] parameteres)
-        {
-            await _appDbContext.Database.ExecuteSqlRawAsync(sql, parameteres);
-        }
+
     }
 }

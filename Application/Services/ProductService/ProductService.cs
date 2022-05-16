@@ -62,6 +62,8 @@ namespace Application.Services.ProductService
                     Description = x.Description,
                     Price = x.Price,
                     ImagePath = x.ImagePath,
+                    CategoryName = x.Category.CategoryName,
+                    
                 },
                 expression: x => x.Id == id && x.Status != Status.Passive);
 
@@ -80,6 +82,8 @@ namespace Application.Services.ProductService
                     Description = x.Description,
                     Price = x.Price,
                     ImagePath = x.ImagePath,
+                    CategoryName = x.Category.CategoryName,
+        
                 },
                 expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.ProductName));
 

@@ -53,7 +53,7 @@ namespace Application.Services.CategoryService
                 {
                     Id = x.Id,
                     CategoryName = x.CategoryName,
-
+                    ParentCategoryName = x.ParentCategory.Name
 
                 },
                 expression: x => x.Id == id &&
@@ -78,6 +78,7 @@ namespace Application.Services.CategoryService
                 {
                     Id = x.Id,
                     CategoryName = x.CategoryName,
+                    ParentCategoryName = x.ParentCategory.Name
                 },
                 expression: x => x.Status != Status.Passive,
                 orderBy: x => x.OrderBy(x => x.CategoryName));

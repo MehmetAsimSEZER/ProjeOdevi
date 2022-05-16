@@ -1,27 +1,24 @@
 ﻿using Domain.Enums;
 using Domain.Interfaces;
-using Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Domain.Models.Entities
 {
-    public class User : IBase<int>,IBaseEntity
+    public class ProductCartRel : IBase<int>, IBaseEntity
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Adress { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
+        public int ShoppingCartId { get; set; }
+        public ShoppingCart ShoppingCart { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
         public Status Status { get; set; }
-        public List<ShoppingCart> ShoppingCarts  { get; set; }
-
     }
 }

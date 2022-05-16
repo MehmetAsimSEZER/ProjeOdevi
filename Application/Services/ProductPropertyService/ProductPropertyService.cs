@@ -66,6 +66,9 @@ namespace Application.Services.ProductPropertyService
                 {
                     Id = x.Id,
                     Value = x.Value,
+                    PropertyName = x.Property.PropertyName,
+                    ProductName = x.Product.ProductName,
+
                 },
                 expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.Value));
             return list;

@@ -83,19 +83,10 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var name = await _productService.IsProductExsist(model.ProductName);
+                 await _productService.Update(model);
+                 ModelState.AddModelError(String.Empty, "The Product has been modified..!");
+                 return Ok(ModelState);
 
-                if (name != false) 
-                {
-                    ModelState.AddModelError(String.Empty, "The Product already exist..!");
-                    return BadRequest(ModelState);
-                }
-                else
-                {
-                    await _productService.Update(model);
-                    ModelState.AddModelError(String.Empty, "The Product has been modified..!");
-                    return Ok(ModelState);
-                }
             }
             else
             {

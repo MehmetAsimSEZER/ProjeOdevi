@@ -84,20 +84,11 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var name = await _categoryService.IsCategoryExsist(model.CategoryName);
 
-                if (name != false)
-                {
-                    ModelState.AddModelError(String.Empty, "The category already exist..!");
-                    return BadRequest(ModelState);
-                }
+                 await _categoryService.Update(model);
+                 ModelState.AddModelError(String.Empty, "The category has been modified..!");
+                 return Ok(ModelState);
 
-                else
-                {
-                    await _categoryService.Update(model);
-                    ModelState.AddModelError(String.Empty, "The category has been modified..!");
-                    return Ok(ModelState);
-                }
             }
             else
             {

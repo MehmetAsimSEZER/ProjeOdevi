@@ -24,6 +24,8 @@ namespace Infrastructure
         public DbSet<Property> Properties { get; set; }
         public DbSet<ProductProperty> ProductProperties { get; set; }
         public DbSet<ParentCategory> ParentCategories { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<ProductCartRel> ProductCartRels { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -34,6 +36,8 @@ namespace Infrastructure
             builder.ApplyConfiguration(new PropertyConfig());
             builder.ApplyConfiguration(new ProductPropertyConfig());
             builder.ApplyConfiguration(new ParentCategoryConfig());
+            builder.ApplyConfiguration(new ShoppingCartConfig());
+            builder.ApplyConfiguration(new ProductCartRelConfig());
 
             base.OnModelCreating(builder);
         }
