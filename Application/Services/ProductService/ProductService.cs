@@ -52,7 +52,7 @@ namespace Application.Services.ProductService
 
         }
 
-        public async Task<UpdateProductDTO> GetById(int id)
+        public async Task<ProductVM> GetById(int id)
         {
             var product = await _unitOfWork.ProductRepository.GetFilteredFirstOrDefault(
                 selector: x => new ProductVM
@@ -67,7 +67,7 @@ namespace Application.Services.ProductService
                 },
                 expression: x => x.Id == id && x.Status != Status.Passive);
 
-            var model = _mapper.Map<UpdateProductDTO>(product);
+            var model = _mapper.Map<ProductVM>(product);
 
             return model;
         }

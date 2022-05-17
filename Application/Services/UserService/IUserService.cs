@@ -17,7 +17,7 @@ namespace Application.Services.UserService
         Task Delete(int id);
         Task LogOut();
         Task UpdateUser(UpdateUserDTO model);
-        Task<UpdateUserDTO> GetById(int id);
+        Task<UserVM> GetById(int id);
         Task<List<UserVM>> GetUsers();
         Task<bool> IsUserExsist(string Email);
     }

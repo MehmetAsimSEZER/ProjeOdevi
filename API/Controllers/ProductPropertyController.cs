@@ -1,5 +1,6 @@
 ﻿using Application.Models.DTOs;
 using Application.Services.ProductPropertyService;
+using Application.Services.ProductService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -92,5 +93,7 @@ namespace API.Controllers
             await _productPropertyService.Delete(id);
             return Ok();
         }
+
+
     }
 }

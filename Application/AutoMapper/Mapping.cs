@@ -52,6 +52,10 @@ namespace Application.AutoMapper
             CreateMap<ParentCategory, ParentCategoryVM>().ReverseMap();
             CreateMap<UpdateParentCategoryDTO, ParentCategoryVM>().ReverseMap();
 
+            CreateMap<Product, ProductCartRel>().ReverseMap();
+            CreateMap<ProductCartRel, ProductCartRelVM>().ReverseMap();
+            CreateMap<ProductCartRelVM, ProductCartRelDTO>().ReverseMap();
+
         }
     }
 }

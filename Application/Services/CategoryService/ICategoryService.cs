@@ -14,7 +14,7 @@ namespace Application.Services.CategoryService
         Task Create(CreateCategoryDTO model);
         Task Update(UpdateCategoryDTO model);
         Task Delete(int id);
-        Task<UpdateCategoryDTO> GetById(int id);
+        Task<CategoryVM> GetById(int id);
         Task<List<CategoryVM>> GetCategories();
 
         Task<bool> IsCategoryExsist(string name);

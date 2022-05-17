@@ -46,7 +46,7 @@ namespace Application.Services.CategoryService
 
         }
 
-        public async Task<UpdateCategoryDTO> GetById(int id)
+        public async Task<CategoryVM> GetById(int id)
         {
             var category = await _unitOfWork.CategoryRepository.GetFilteredFirstOrDefault(
                 selector: x => new CategoryVM
@@ -59,7 +59,7 @@ namespace Application.Services.CategoryService
                 expression: x => x.Id == id &&
                                  x.Status != Status.Passive);
 
-            var model = _mapper.Map<UpdateCategoryDTO>(category);
+            var model = _mapper.Map<CategoryVM>(category);
 
             return model;
         }

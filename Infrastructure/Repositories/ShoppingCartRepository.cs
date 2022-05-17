@@ -13,5 +13,7 @@ namespace Infrastructure.Repositories
         public ShoppingCartRepository(AppDbContext appDbContext) : base(appDbContext)
         {
         }
+
+
     }
 }

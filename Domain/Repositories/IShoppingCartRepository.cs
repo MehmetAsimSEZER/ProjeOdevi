@@ -9,5 +9,6 @@ namespace Domain.Repositories
 {
     public interface IShoppingCartRepository : IBaseRepository<ShoppingCart>
     {
+
     }
 }

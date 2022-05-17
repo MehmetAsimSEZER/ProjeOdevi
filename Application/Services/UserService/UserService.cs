@@ -41,9 +41,9 @@ namespace Application.Services.UserService
 
         }
 
-        public async Task<UpdateUserDTO> GetById(int id)
+        public async Task<UserVM> GetById(int id)
         {
-            UserVM user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
+            var user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
                 selector: x => new UserVM
                 {
                     Id = x.Id,
@@ -56,7 +56,7 @@ namespace Application.Services.UserService
                 expression: x => x.Id == id &&
                             x.Status != Status.Passive);
 
-            UpdateUserDTO model = _mapper.Map<UpdateUserDTO>(user);
+            var model = _mapper.Map<UserVM>(user);
 
             return model;
         }

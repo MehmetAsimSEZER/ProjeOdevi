@@ -13,7 +13,7 @@ namespace Application.Services.ProductService
         Task Create(CreateProductDTO model);
         Task Update(UpdateProductDTO model);
         Task Delete(int id);
-        Task<UpdateProductDTO> GetById(int id);
+        Task<ProductVM> GetById(int id);
         Task<List<ProductVM>> GetProducts();
         Task<bool> IsProductExsist(string name);
 
