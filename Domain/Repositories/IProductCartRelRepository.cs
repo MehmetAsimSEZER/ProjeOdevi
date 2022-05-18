@@ -9,12 +9,6 @@ namespace Domain.Repositories
 {
     public interface IProductCartRelRepository : IBaseRepository<ProductCartRel>
     {
-        public void AddProduct(Product product, int quantity);
 
-        public void DeleteProduct(Product product);
-
-        public decimal Total();
-
-        public void Clear();
     }
 }

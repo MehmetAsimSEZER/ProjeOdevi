@@ -1,5 +1,5 @@
-﻿using Application.Models.VMs;
-using AutoMapper;
+﻿using AutoMapper;
+using Domain.Entities;
 using Domain.Models.Entities;
 using Domain.UoW;
 using System;
@@ -21,6 +21,25 @@ namespace Application.Services.ShoppingCartService
             _mapper = mapper;
         }
 
+        public async Task Add(User user, Product product, int quantity)
+        {
+            _unitOfWork.ShoppingCartRepository.AddCart(user, product, quantity);
 
+            await _unitOfWork.Commit();
+        }
+
+        public async Task Delete(User user)
+        {
+            _unitOfWork.ShoppingCartRepository.DeleteCart(user);
+
+            await _unitOfWork.Commit();
+        }
+
+        public async Task Total(ShoppingCart ShoppingCart)
+        {
+            _unitOfWork.ShoppingCartRepository.Total(ShoppingCart);
+
+            await _unitOfWork.Commit();
+        }
     }
 }

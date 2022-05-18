@@ -24,34 +24,7 @@ namespace Application.Services.ProductCartRelService
         }
 
 
-        public async Task Create(ProductCartRelDTO model)
-        {
-            _unitOfWork.ProductCartRelRepository.AddProduct(model.ProductId,model.Quantity);
 
-            await _unitOfWork.Commit();
-        }
-
-        public async Task Delete(ProductCartRelDTO model)
-        {
-            _unitOfWork.ProductCartRelRepository.DeleteProduct(model.ProductId);
-
-            await _unitOfWork.Commit();
-        }
-
-        public async Task Total()
-        {
-            _unitOfWork.ProductCartRelRepository.Total();
-
-            await _unitOfWork.Commit();
-        }
-
-
-        public async Task Clear()
-        {
-            _unitOfWork.ProductCartRelRepository.Clear();
-
-            await _unitOfWork.Commit();
-        }
 
     }
 }

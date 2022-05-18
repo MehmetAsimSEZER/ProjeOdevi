@@ -10,10 +10,7 @@ namespace Application.Services.ProductCartRelService
 {
     public interface IProductCartRelService
     {
-        Task Create(ProductCartRelDTO model);
-        Task Delete(ProductCartRelDTO model);
-        Task Total();
-        Task Clear();
+
 
     }
 }

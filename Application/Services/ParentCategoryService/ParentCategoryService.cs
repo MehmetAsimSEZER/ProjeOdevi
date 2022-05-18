@@ -27,49 +27,49 @@ namespace Application.Services.ParentCategoryService
 
         public async Task Create(CreateParentCategoryDTO model)
         {
-            var name = _mapper.Map<ParentCategory>(model);
+            var parent = _mapper.Map<ParentCategory>(model);
 
-            await _unitOfWork.ParentCategoryRepository.Create(name);
+            await _unitOfWork.ParentCategoryRepository.Create(parent);
 
             await _unitOfWork.Commit();
         }
 
         public async Task Update(UpdateParentCategoryDTO model)
         {
-            var name = _mapper.Map<ParentCategory>(model);
+            var parent = _mapper.Map<ParentCategory>(model);
 
-            _unitOfWork.ParentCategoryRepository.Update(name);
+            _unitOfWork.ParentCategoryRepository.Update(parent);
 
             await _unitOfWork.Commit();
         }
 
         public async Task Delete(int id)
         {
-            var result = await _unitOfWork.ParentCategoryRepository.GetDefault(x => x.Id == id);
+            var parent = await _unitOfWork.ParentCategoryRepository.GetDefault(x => x.Id == id);
 
-            result.DeleteDate = DateTime.Now;
-            result.Status = Status.Passive;
+            parent.DeleteDate = DateTime.Now;
+            parent.Status = Status.Passive;
 
             await _unitOfWork.Commit();
         }
 
         public async Task<List<ParentCategoryVM>> GetParentCategories()
         {
-            var list = await _unitOfWork.ParentCategoryRepository.GetFilteredList(
+            var parents = await _unitOfWork.ParentCategoryRepository.GetFilteredList(
                 selector: x => new ParentCategoryVM
                 {
                     Id = x.Id,
                     Name = x.Name,
                 },
                 expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.Name));
-            return list;
+            return parents;
         }
 
         public async Task<bool> IsParentCategoryExsist(string name)
         {
-            var result = await _unitOfWork.ParentCategoryRepository.Any(x => x.Name == name);
+            var parent = await _unitOfWork.ParentCategoryRepository.Any(x => x.Name == name);
 
-            return result;
+            return parent;
         }
 
 
