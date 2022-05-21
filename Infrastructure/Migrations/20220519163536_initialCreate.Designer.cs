@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220514095447_initialCreate")]
+    [Migration("20220519163536_initialCreate")]
     partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,6 +178,44 @@ namespace Infrastructure.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Domain.Models.Entities.ProductCartRel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("ProductCartRels");
+                });
+
             modelBuilder.Entity("Domain.Models.Entities.ProductProperty", b =>
                 {
                     b.Property<int>("Id")
@@ -244,6 +282,36 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Properties");
+                });
+
+            modelBuilder.Entity("Domain.Models.Entities.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -466,6 +534,25 @@ namespace Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Domain.Models.Entities.ProductCartRel", b =>
+                {
+                    b.HasOne("Domain.Models.Entities.Product", "Product")
+                        .WithMany("ProductCartRels")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Entities.ShoppingCart", "ShoppingCart")
+                        .WithMany("ProductCartRels")
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ShoppingCart");
+                });
+
             modelBuilder.Entity("Domain.Models.Entities.ProductProperty", b =>
                 {
                     b.HasOne("Domain.Models.Entities.Product", "Product")
@@ -483,6 +570,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Property");
+                });
+
+            modelBuilder.Entity("Domain.Models.Entities.ShoppingCart", b =>
+                {
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany("ShoppingCarts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -541,6 +639,11 @@ namespace Infrastructure.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.Navigation("ShoppingCarts");
+                });
+
             modelBuilder.Entity("Domain.Models.Entities.ParentCategory", b =>
                 {
                     b.Navigation("Categories");
@@ -548,12 +651,19 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.Entities.Product", b =>
                 {
+                    b.Navigation("ProductCartRels");
+
                     b.Navigation("ProductProperties");
                 });
 
             modelBuilder.Entity("Domain.Models.Entities.Property", b =>
                 {
                     b.Navigation("ProductProperties");
+                });
+
+            modelBuilder.Entity("Domain.Models.Entities.ShoppingCart", b =>
+                {
+                    b.Navigation("ProductCartRels");
                 });
 #pragma warning restore 612, 618
         }
