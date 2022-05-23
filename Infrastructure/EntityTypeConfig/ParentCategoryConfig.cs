@@ -13,7 +13,7 @@ namespace Infrastructure.EntityTypeConfig
         public override void Configure(EntityTypeBuilder<ParentCategory> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
 
             base.Configure(builder);
         }

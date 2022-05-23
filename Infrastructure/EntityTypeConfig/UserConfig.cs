@@ -13,10 +13,10 @@ namespace Infrastructure.EntityTypeConfig
         public override void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.FirstName).IsRequired();
-            builder.Property(x => x.LastName).IsRequired();
+            builder.Property(x => x.FirstName).IsRequired().HasMaxLength(25);
+            builder.Property(x => x.LastName).IsRequired().HasMaxLength(25);
             builder.Property(x => x.Adress).IsRequired();
-            builder.Property(x => x.Phone).IsRequired();
+            builder.Property(x => x.Phone).IsRequired().HasMaxLength(11);
             builder.Property(x => x.Email).IsRequired();
 
             base.Configure(builder);

@@ -66,10 +66,9 @@ namespace Application.Services.ProductService
                     
                 },
                 expression: x => x.Id == id && x.Status != Status.Passive);
+     
+            return product;
 
-            var model = _mapper.Map<ProductVM>(product);
-
-            return model;
         }
 
         public async Task<List<ProductVM>> GetProducts()
@@ -82,12 +81,13 @@ namespace Application.Services.ProductService
                     Description = x.Description,
                     Price = x.Price,
                     ImagePath = x.ImagePath,
-                    CategoryName = x.Category.CategoryName,
-        
+                    CategoryName = x.Category.CategoryName,                   
+
                 },
                 expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.ProductName));
 
             return product;
+
         }
 
         public async Task<bool> IsProductExsist(string name)

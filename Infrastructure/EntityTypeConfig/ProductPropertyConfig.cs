@@ -13,7 +13,7 @@ namespace Infrastructure.EntityTypeConfig
         public override void Configure(EntityTypeBuilder<ProductProperty> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Value);
+            builder.Property(x => x.Value).HasMaxLength(50);
 
             builder.HasOne(x => x.Product).WithMany(x => x.ProductProperties).HasForeignKey(x => x.ProductId);
             builder.HasOne(x => x.Property).WithMany(x => x.ProductProperties).HasForeignKey(x => x.PropertyId);

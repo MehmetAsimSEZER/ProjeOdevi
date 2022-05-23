@@ -12,6 +12,8 @@ using Application.Services.ProductService;
 using Application.Services.PropertyService;
 using Application.Services.ProductPropertyService;
 using Application.Services.ParentCategoryService;
+using Application.Services.ShoppingCartService;
+using Application.Services.ProductCartRelService;
 
 namespace Application.IoC
 {
@@ -33,6 +35,8 @@ namespace Application.IoC
             builder.RegisterType<PropertyService>().As<IPropertyService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductPropertyService>().As<IProductPropertyService>().InstancePerLifetimeScope();
             builder.RegisterType<ParentCategoryService>().As<IParentCategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<ShoppingCartService>().As<IShoppingCartService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductCartRelService>().As<IProductCartRelService>().InstancePerLifetimeScope();
 
 
             builder.RegisterType<LoginValidation>().As<IValidator<LoginDTO>>().InstancePerLifetimeScope();

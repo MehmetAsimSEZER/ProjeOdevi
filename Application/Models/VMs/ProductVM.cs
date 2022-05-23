@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Models.VMs
 {
-    public class ProductVM
+    public class ProductVM 
     {
         public int Id { get; set; }
         public string ProductName { get; set; }
