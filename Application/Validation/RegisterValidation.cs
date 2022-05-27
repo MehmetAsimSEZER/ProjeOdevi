@@ -12,7 +12,15 @@ namespace Application.Validation
     {
         public RegisterValidation()
         {
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("Enter a username").EmailAddress().MinimumLength(3).MaximumLength(50).WithMessage("Minimum 3, maximum 50 character");
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("Enter a FirstName").MaximumLength(25).WithMessage("Maximum 25 character");
+
+            RuleFor(x => x.LastName).NotEmpty().WithMessage("Enter a FirstName").MaximumLength(25).WithMessage("Maximum 25 character");
+
+            RuleFor(x => x.Adress).NotEmpty().WithMessage("Enter a Adress");
+
+            RuleFor(x => x.Phone).NotEmpty().WithMessage("Enter a Phone Number").MinimumLength(11).MaximumLength(11);
+
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Enter a username").MinimumLength(3).MaximumLength(50).WithMessage("Minimum 3, maximum 50 character");
 
             RuleFor(x => x.Email).NotEmpty().WithMessage("Enter a email address").EmailAddress().WithMessage("Enter a valid a email address");
 

@@ -30,7 +30,7 @@ namespace Application.Services.UserService
             _mapper = mapper;
         }
 
-        public async Task CreateUser(CreateUserDTO model)
+        public async Task Create(CreateUserDTO model)
         {
             var user = _mapper.Map<User>(model);
 
@@ -41,22 +41,22 @@ namespace Application.Services.UserService
 
         }
 
-        public async Task<UserVM> GetById(int id)
+        public async Task<UpdateUserDTO> GetById(string id)
         {
-            var user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
+            UserVM user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
                 selector: x => new UserVM
                 {
-                    Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     Adress = x.Adress,
                     Phone = x.Phone,
                     Email = x.Email,
+                    UserName = x.UserName,
                 },
                 expression: x => x.Id == id &&
                             x.Status != Status.Passive);
 
-            var model = _mapper.Map<UserVM>(user);
+            UpdateUserDTO model = _mapper.Map<UpdateUserDTO>(user);
 
             return model;
         }
@@ -70,7 +70,7 @@ namespace Application.Services.UserService
 
 
 
-        public async Task UpdateUser(UpdateUserDTO model)
+        public async Task Update(UpdateUserDTO model)
         {
             var user = _mapper.Map<User>(model);
 
@@ -90,6 +90,7 @@ namespace Application.Services.UserService
                     Adress = x.Adress,
                     Phone = x.Phone,
                     Email = x.Email,
+                    UserName = x.UserName,
                 },
                 expression: x => x.Status != Status.Passive,
                 orderBy: x => x.OrderBy(x => x.FirstName));
@@ -97,7 +98,7 @@ namespace Application.Services.UserService
             return users;
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(string id)
         {
             var user = await _unitOfWork.UserRepository.GetDefault(x => x.Id == id);
 
@@ -135,5 +136,29 @@ namespace Application.Services.UserService
             return result;
         }
 
+        public async Task UpdateUser(UpdateUserDTO model)
+        {
+            var user = await _unitOfWork.UserRepository.GetDefault(x => x.Id == model.Id);
+
+            if (user != null)
+            {
+                if (model.UserName != null)
+                {
+                    await _userManager.SetUserNameAsync(user, model.UserName);
+                    await _signInManager.SignInAsync(user, false);
+                }
+
+                if (model.Email != null)
+                {
+                    await _userManager.SetEmailAsync(user, model.Email);
+                }
+
+                if (model.Password != null)
+                {
+                    user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+                    await _userManager.UpdateAsync(user);
+                }
+            }
+        }
     }
 }

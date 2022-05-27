@@ -12,7 +12,7 @@ namespace Domain.Models.Entities
     public class ShoppingCart : IBase<int>, IBaseEntity
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }

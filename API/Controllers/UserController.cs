@@ -35,8 +35,8 @@ namespace API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetUser(int id)
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> GetUser(string id)
         {
             var user = await _userService.GetById(id);
 
@@ -62,7 +62,7 @@ namespace API.Controllers
                 }
                 else
                 {
-                    await _userService.CreateUser(user);
+                    await _userService.Create(user);
                     ModelState.AddModelError(String.Empty, "The Users has been Created");
                     return Ok(ModelState);
                 }
@@ -85,7 +85,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _userService.UpdateUser(user);
+                await _userService.Update(user);
                 ModelState.AddModelError(String.Empty, "The Users has been modified..!");
                 return Ok(ModelState);
 
@@ -104,7 +104,7 @@ namespace API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<IActionResult> DeleteUsers(int id)
+        public async Task<IActionResult> DeleteUsers(string id)
         {
             await _userService.Delete(id);
             return Ok();
