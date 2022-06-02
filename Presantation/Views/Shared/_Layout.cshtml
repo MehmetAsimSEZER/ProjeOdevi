@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model List<CategoryVM>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,15 +32,39 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Sale</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li><a class="dropdown-item" href="#!">All Categories</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                         </ul>
                     </li>
                 </ul>
+                <!-- Right navbar links -->
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="navbar-item">
+                            <a class="btn btn-sm btn-warning" asp-controller="Account" asp-action="ProfileDetails" asp-route-userName="@User.Identity.Name">View Profile</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">View Profile</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a class="btn btn-sm btn-danger" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="navbar-item">
+                            <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="LogIn">Log In</a>
+                        </li>
+
+                        <li class="navbar-item">
+                            <a class="btn btn-sm btn-success" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    }
+                </ul>
+
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
