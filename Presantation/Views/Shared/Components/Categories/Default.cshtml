@@ -1,0 +1,14 @@
+﻿@model List<CategoryVM>
+
+<ul class="list-group">
+	<li class="list-group-item">
+		<a class="nav-link text-dark" asp-controller="Product" asp-action="Index">All Categories</a>
+	</li>
+
+	@foreach (var item in Model)
+	{
+		<li class="list-group-item">
+			<a class="nav-link text-dark" asp-controller="Product" asp-action="ProductByCategory" asp-route-categorySlug="@item.Id">@item.CategoryName</a>
+		</li>
+	}
+</ul>

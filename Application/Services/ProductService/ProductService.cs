@@ -4,6 +4,9 @@ using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Entities;
 using Domain.UoW;
+using Microsoft.EntityFrameworkCore;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,15 @@ namespace Application.Services.ProductService
         {
             var product = _mapper.Map<Product>(model);
 
+            if (model.UploadPath != null)
+            {
+                using var image = Image.Load(model.UploadPath.OpenReadStream());
+                image.Mutate(x => x.Resize(256, 256));
+                string guid = Guid.NewGuid().ToString();
+                image.Save($"wwwroot/images/products/{guid}.jpg");
+                product.ImagePath = $"/images/products/{guid}.jpg";
+            }
+
             await _unitOfWork.ProductRepository.Create(product);
 
             await _unitOfWork.Commit();
@@ -35,6 +47,15 @@ namespace Application.Services.ProductService
         public async Task Update(UpdateProductDTO model)
         {
             var product = _mapper.Map<Product>(model);
+
+            if (model.UploadPath != null)
+            {
+                using var image = Image.Load(model.UploadPath.OpenReadStream());
+                image.Mutate(x => x.Resize(256, 256));
+                string guid = Guid.NewGuid().ToString();
+                image.Save($"wwwroot/images/products/{guid}.jpg");
+                product.ImagePath = $"/images/products/{guid}.jpg";
+            }
 
             _unitOfWork.ProductRepository.Update(product);
 
@@ -97,6 +118,26 @@ namespace Application.Services.ProductService
             return result;
         }
 
+
+        public async Task<List<ProductVM>> GetProductByCategory(int categoryId)
+        {
+            var products = await _unitOfWork.ProductRepository.GetFilteredList(
+                selector: x => new ProductVM
+                {
+                    Id = x.Id,
+                    ProductName = x.ProductName,
+                    Description = x.Description,
+                    Price = x.Price,
+                    ImagePath = x.ImagePath,
+                    CategoryName = x.Category.CategoryName
+                },
+                expression: x => x.CategoryId == categoryId &&
+                                x.Status != Status.Passive,
+                orderBy: x => x.OrderBy(x => x.ProductName),
+                include: x => x.Include(x => x.Category));
+
+            return products;
+        }
 
     }
 }

@@ -1,0 +1,27 @@
+﻿@model List<ProductVM>
+
+
+	@foreach (var item in Model)
+	{
+
+		<div class="col mb-5" asp-controller="Product" asp-action="Index" asp-route-categorySlug="@item.Id">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="~/media/İmages/apple-iphone-13-pro-max-256gb-gumus-1.jpg" alt="...">
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">@item.ProductName</h5>
+                            <!-- Product price-->
+                            @item.Price
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add Cart</a></div>
+                    </div>
+                </div>
+            </div>
+
+	}

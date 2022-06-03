@@ -16,8 +16,8 @@ namespace Application.Services.ProductService
         Task<ProductVM> GetById(int id);
         Task<List<ProductVM>> GetProducts();
         Task<bool> IsProductExsist(string name);
+        Task<List<ProductVM>> GetProductByCategory(int categoryId);
 
-        
 
     }
 }

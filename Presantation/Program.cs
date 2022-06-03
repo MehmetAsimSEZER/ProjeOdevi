@@ -63,6 +63,10 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.MapControllerRoute(
+    "product",
+    "product/{categoryName}",
+    defaults: new { controller = "Product", action = "ProductByCategory" });
 
 app.MapControllerRoute(
     name: "areas",

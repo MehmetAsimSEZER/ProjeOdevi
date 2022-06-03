@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model CreateCategoryDTO
 @{
     ViewData["Title"] = "Create";
 }
@@ -10,19 +10,22 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">
-                        Create Role
+                        Create Category
                     </h4>
                 </div>
                 <div class="card-body">
                     <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
-                            <label>Role Name</label>
-                            <input type="text" name="roleName" class="form-control" placeholder="Role Name" />
+                            <label asp-for="CategoryName"></label>
+                            <input asp-for="CategoryName" class="form-control" placeholder="CategoryName" />
                         </div>
                         <div class="form-group">
-                            <br />
-                            <input type="submit" class="btn btn-primary btn-sm float-end" value="Submit" />
+                            <label asp-for="ParentCategoryId"></label>
+                            <input asp-for="ParentCategoryId" class="form-control" placeholder="ParentCategoryId" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Submit" />
                         </div>
                     </form>
                 </div>
@@ -34,4 +37,3 @@
         <div class="col-sm-3"></div>
     </div>
 </div>
-

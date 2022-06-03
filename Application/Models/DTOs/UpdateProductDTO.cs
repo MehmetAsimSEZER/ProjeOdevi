@@ -1,4 +1,6 @@
-﻿using Domain.Enums;
+﻿using Application.VMs;
+using Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,9 @@ namespace Application.Models.DTOs
         public decimal Price { get; set; }
         public string ImagePath { get; set; }
         public int CategoryId { get; set; }
+        public IFormFile UploadPath { get; set; }
         public DateTime UpdateDate => DateTime.Now;
         public Status Status => Status.Modified;
+        public List<CategoryVM>? Categories { get; set; }
     }
 }
