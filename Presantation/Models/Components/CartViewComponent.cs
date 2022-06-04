@@ -12,11 +12,13 @@ namespace Presantation.Models.Components
             CartVM model;
 
             if (cart == null || cart.Count == 0)
+            {   
                 model = new CartVM()
                 {
-                    NumberOfItems =0,
+                    NumberOfItems = 0,
                     TotalAmount = 0
                 };
+            }
             else
             {
                 model = new CartVM()

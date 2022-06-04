@@ -1,4 +1,5 @@
-﻿@model List<CategoryVM>
+﻿
+@model List<CategoryVM>
 
 <ul class="list-group">
 	<li class="list-group-item">
@@ -8,7 +9,7 @@
 	@foreach (var item in Model)
 	{
 		<li class="list-group-item">
-			<a class="nav-link text-dark" asp-controller="Product" asp-action="ProductByCategory" asp-route-categorySlug="@item.Id">@item.CategoryName</a>
+			<a class="nav-link text-dark" asp-controller="Product" asp-action="ProductByCategory" asp-route-categoryName="@item.CategoryName">@item.CategoryName</a>
 		</li>
 	}
 </ul>
