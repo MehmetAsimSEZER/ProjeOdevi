@@ -3,19 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Presantation.Models.Components
 {
-    public class SmallCartViewComponent:ViewComponent
+    public class CartViewComponent:ViewComponent
     {
         public IViewComponentResult Invoke()
         {
             List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart");
 
-            SmallCartVM model;
+            CartVM model;
 
             if (cart == null || cart.Count == 0)
-                model = null;
+                model = new CartVM()
+                {
+                    NumberOfItems =0,
+                    TotalAmount = 0
+                };
             else
             {
-                model = new SmallCartVM()
+                model = new CartVM()
                 {
                     NumberOfItems = cart.Sum(x => x.Quantity),
                     TotalAmount = cart.Sum(x => x.Quantity * x.Price)
