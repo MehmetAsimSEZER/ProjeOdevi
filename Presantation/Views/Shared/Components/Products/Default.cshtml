@@ -1,5 +1,4 @@
-﻿
-@model List<ProductVM>
+﻿@model List<ProductVM>
 
 
 @foreach (var item in Model)
@@ -8,7 +7,7 @@
     <div class="col mb-5" asp-controller="Product" asp-action="Index" asp-route-productId="@item.Id">
         <div class="card h-100">
             <!-- Product image-->
-        <img class="card-img-top" src="~/media/İmages/apple-iphone-13-pro-max-256gb-gumus-1.jpg" alt="...">
+        <img class="card-img-top" src="/media/İmages/@item.ImagePath" width="200" height="300" alt="...">
             <!-- Product details-->
         <div class="card-body p-4">
                 <div class="text-center">
@@ -19,8 +18,11 @@
                 </div>
             </div>
             <!-- Product actions-->
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark mt-auto">Add Cart</a></div>
+        <div class="card-footer">
+                <div>
+                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark">Sepete Ekle</a>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark">Ürün İncele</a>
+                </div>
             </div>
         </div>
     </div>

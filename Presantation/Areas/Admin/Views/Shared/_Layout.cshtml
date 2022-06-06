@@ -25,31 +25,6 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 
-                <!-- Right navbar links -->
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li class="navbar-item">
-                            <a class="btn btn-sm btn-warning" asp-controller="Account" asp-action="ProfileDetails" asp-route-userName="@User.Identity.Name">View Profile</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">View Profile</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a class="btn btn-sm btn-danger" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="navbar-item">
-                            <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="LogIn">Log In</a>
-                        </li>
-
-                        <li class="navbar-item">
-                            <a class="btn btn-sm btn-success" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
-                    }
-                </ul>
             </div>
         </div>
     </nav>
@@ -63,7 +38,12 @@
             </div>
         </div>
     </header>
-    @RenderBody()
+    <div class="container">
+        <main role="main" class="pb-3">
+            <partial name="_NotificationPartial" />
+            @RenderBody()
+        </main>
+    </div>
 
 
     <!-- Footer-->
@@ -72,6 +52,10 @@
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
     <!-- Core theme JS-->
     <link rel="stylesheet" href="~/media/js/scripts.js">
 </body>

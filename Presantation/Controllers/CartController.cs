@@ -46,7 +46,7 @@ namespace Presantation.Controllers
             }               
             HttpContext.Session.SetJson("Cart", cart);
 
-            return ViewComponent("Cart");
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Decrease(int id)
@@ -100,5 +100,6 @@ namespace Presantation.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }

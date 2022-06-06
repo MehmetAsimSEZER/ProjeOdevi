@@ -9,52 +9,56 @@
     <h1 class="display-4">Sepetiniz:</h1>
     @if (Model.CartItems != null && Model.CartItems.Count > 0)
     {
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Cart Overview</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th></th>
-                                    <th>Price</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.CartItems)
-                                {
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Sepetiniz</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <img src="@item.Image" width="60" height="60">
-                                        </td>
-                                        <td>@item.ProductName</td>
-                                        <td>@item.Quantity</td>
-                                        <td>
-                                            <a asp-action="Add" asp-route-id="@item.ProductId" class="btn btn-primary btn-sm">Add</a>
-                                            <a asp-action="Remove" asp-route-id="@item.ProductId" class="btn btn-dark btn-sm">Remove</a>
-                                            <a asp-action="Decrease" asp-route-id="@item.ProductId" class="btn btn-danger btn-sm">Decrease</a>
-                                        </td>
-                                        <td>@item.Price.ToString("C2")</td>
-                                        <td>@Model.CartItems.Where(x=> x.ProductId == item.ProductId).Sum(x=> x.Quantity * x.Price).ToString("C2")</td>
+                                        <th>Image</th>
+                                        <th>Ürün Adı</th>
+                                        <th>Adet</th>
+                                        <th></th>
+                                        <th>Fiyat</th>
+                                        <th>Toplam</th>
                                     </tr>
-                                }
-                                <tr>
-                                    <td colspan="6" class="text-right">
-                                        <span class="badge bg-info text-dark">Grand Total: @Model.GrandTotal.ToString("C2")</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer">
-                        <a asp-action="Clear" class="btn alert-danger btn-block">Clear Cart</a>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.CartItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="/media/İmages/@item.Image" width="60" height="60">
+                                            </td>
+                                            <td>@item.ProductName</td>
+                                            <td>@item.Quantity</td>
+                                            <td>
+                                                <a asp-action="Add" asp-route-id="@item.ProductId" class="btn btn-primary btn-sm">Ekle</a>
+                                                <a asp-action="Remove" asp-route-id="@item.ProductId" class="btn btn-dark btn-sm">Sil</a>
+                                                <a asp-action="Decrease" asp-route-id="@item.ProductId" class="btn btn-danger btn-sm">Ürün Azalt</a>
+                                            </td>
+                                            <td>@item.Price.ToString("C2")</td>
+                                            <td>@Model.CartItems.Where(x=> x.ProductId == item.ProductId).Sum(x=> x.Quantity * x.Price).ToString("C2")</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="6" class="text-right">
+                                            <span class="badge text-dark">
+                                               <h4> Toplam Tutar: @Model.GrandTotal.ToString("C2")</h4>
+                                                </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-action="Clear" class="btn alert-danger btn-block">Sepeti Temizle</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,7 +66,9 @@
     }
     else
     {
-        <h3 class="display-4 text-center">Your cart is empty..!</h3>
+        <div class="alert alert-warning" role="alert">
+            <h2>Alışveriş Sepetinizde Ürün Bulunmamaktadır..!</h2>
+        </div>
     }
 
 </div>
