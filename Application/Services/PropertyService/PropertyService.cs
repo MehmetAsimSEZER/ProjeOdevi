@@ -69,5 +69,18 @@ namespace Application.Services.PropertyService
                 expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.PropertyName));
             return properties;
         }
+
+        public async Task<PropertyVM> GetById(int id)
+        {
+            var property = await _unitOfWork.PropertyRepository.GetFilteredFirstOrDefault(
+                selector: x => new PropertyVM
+                {
+                    Id = x.Id,
+                    PropertyName= x.PropertyName,                 
+                },
+                expression: x => x.Id == id && x.Status != Status.Passive);
+
+            return property;
+        }
     }
 }

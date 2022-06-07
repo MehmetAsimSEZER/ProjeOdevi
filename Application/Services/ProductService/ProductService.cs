@@ -1,5 +1,6 @@
 ﻿using Application.Models.DTOs;
 using Application.Models.VMs;
+using Application.Services.PropertyService;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Entities;
@@ -19,25 +20,18 @@ namespace Application.Services.ProductService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IPropertyService _propertyService;
 
-        public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
+        public ProductService(IUnitOfWork unitOfWork, IMapper mapper, IPropertyService propertyService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _propertyService = propertyService;
         }
 
         public async Task Create(CreateProductDTO model)
         {
             var product = _mapper.Map<Product>(model);
-
-            if (model.UploadPath != null)
-            {
-                using var image = Image.Load(model.UploadPath.OpenReadStream());
-                image.Mutate(x => x.Resize(256, 256));
-                string guid = Guid.NewGuid().ToString();
-                image.Save($"wwwroot/images/products/{guid}.jpg");
-                product.ImagePath = $"/images/products/{guid}.jpg";
-            }
 
             await _unitOfWork.ProductRepository.Create(product);
 
@@ -47,15 +41,6 @@ namespace Application.Services.ProductService
         public async Task Update(UpdateProductDTO model)
         {
             var product = _mapper.Map<Product>(model);
-
-            if (model.UploadPath != null)
-            {
-                using var image = Image.Load(model.UploadPath.OpenReadStream());
-                image.Mutate(x => x.Resize(256, 256));
-                string guid = Guid.NewGuid().ToString();
-                image.Save($"wwwroot/images/products/{guid}.jpg");
-                product.ImagePath = $"/images/products/{guid}.jpg";
-            }
 
             _unitOfWork.ProductRepository.Update(product);
 
@@ -84,10 +69,12 @@ namespace Application.Services.ProductService
                     Price = x.Price,
                     ImagePath = x.ImagePath,
                     CategoryName = x.Category.CategoryName,
-                    
+                    ProductProperties = x.ProductProperties,
+
                 },
                 expression: x => x.Id == id && x.Status != Status.Passive);
-     
+
+
             return product;
 
         }
@@ -102,7 +89,8 @@ namespace Application.Services.ProductService
                     Description = x.Description,
                     Price = x.Price,
                     ImagePath = x.ImagePath,
-                    CategoryName = x.Category.CategoryName,                   
+                    CategoryName = x.Category.CategoryName,
+                    ProductProperties = x.ProductProperties,
 
                 },
                 expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.ProductName));
@@ -129,7 +117,8 @@ namespace Application.Services.ProductService
                     Description = x.Description,
                     Price = x.Price,
                     ImagePath = x.ImagePath,
-                    CategoryName = x.Category.CategoryName
+                    CategoryName = x.Category.CategoryName,
+                    ProductProperties = x.ProductProperties,
                 },
                 expression: x => x.CategoryId == categoryId &&
                                 x.Status != Status.Passive,
@@ -139,5 +128,36 @@ namespace Application.Services.ProductService
             return products;
         }
 
+        public async Task<ProductVM> GetByIdWithProductProperty(int id)
+        {
+            var product = await _unitOfWork.ProductRepository.GetFilteredFirstOrDefault(
+                selector: x => new ProductVM
+                {
+                    Id = x.Id,
+                    ProductName = x.ProductName,
+                    Description = x.Description,
+                    Price = x.Price,
+                    ImagePath = x.ImagePath,
+                    CategoryName = x.Category.CategoryName,
+                    ProductProperties = x.ProductProperties,
+
+                },
+                expression: x => x.Id == id && x.Status != Status.Passive);
+
+            if (product.ProductProperties != null)
+            {
+                product.ProductProperties.ForEach(relation =>
+                {
+                    Task<PropertyVM> serviceResponse = _propertyService.GetById(relation.PropertyId);
+                    relation.Property = new Property();
+                    relation.Property.Id = serviceResponse.GetAwaiter().GetResult().Id;
+                    relation.Property.PropertyName = serviceResponse.GetAwaiter().GetResult().PropertyName;
+                });
+
+            }
+
+            return product;
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿@model ProductVM
 
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -21,16 +22,27 @@
         </div>
         <div class="row mt-2">
             <div class="col-md-12">
-                <button class="btn btn-success">
-                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" data-id="@Model.Id" class="btn btn-success">Sepete Ekle</a>
-                </button>
+                <div id="description">
+                    Ürün Detayları : @Model.Description
+                </div>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-md-12">
-                <div id="description">
-                    Ürün Detayları: @Model.Description
-                </div>
+                <p>
+                    Ürün Özellikleri:
+                    @foreach (var item in Model.ProductProperties)
+                    {
+                        <h6> @item.Property.PropertyName : @item.Value </h6>
+                    }
+                </p>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <button class="btn btn-success">
+                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" data-id="@Model.Id" class="btn btn-success">Sepete Ekle</a>
+                </button>
             </div>
         </div>
     </div>

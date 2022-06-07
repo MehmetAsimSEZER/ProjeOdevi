@@ -13,5 +13,6 @@ namespace Application.Models.VMs
         public string PropertyName { get; set; }
         public string ProductName { get; set; }
 
+
     }
 }

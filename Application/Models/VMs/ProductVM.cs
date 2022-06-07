@@ -16,6 +16,7 @@ namespace Application.Models.VMs
         public decimal Price { get; set; }
         public string ImagePath { get; set; }
         public string CategoryName { get; set; }
+        public List<ProductProperty>? ProductProperties { get; set; }
 
     }
 }

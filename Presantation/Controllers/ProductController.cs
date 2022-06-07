@@ -36,7 +36,7 @@ namespace Presantation.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var product = await _productService.GetById(id);
+            var product = await _productService.GetByIdWithProductProperty(id);
 
             return View(product);
         }

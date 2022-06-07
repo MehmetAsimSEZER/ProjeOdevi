@@ -15,5 +15,6 @@ namespace Application.Services.ProductPropertyService
         Task Delete(int id);
         Task<List<ProductPropertyVM>> Get();
         Task<bool> IsProductPropertyExsist(string value);
+        Task<ProductPropertyVM> GetById(int id);
     }
 }
