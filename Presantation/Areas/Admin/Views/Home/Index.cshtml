@@ -1,10 +1,28 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Ana Sayfa</h1>
+    <h1 class="display-4">Yönetim Paneli</h1>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row mt-2">
+                <div class="col-3">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Role" asp-action="Create">Role Create</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Create">Category Create</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Create">Product Create</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
 
 

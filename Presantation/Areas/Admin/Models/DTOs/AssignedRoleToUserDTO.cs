@@ -14,5 +14,6 @@ namespace Presantation.Areas.Admin.Models.DTOs
 
         public string[] AddIds { get; set; }
         public string[] RemoveIds { get; set; }
+
     }
 }

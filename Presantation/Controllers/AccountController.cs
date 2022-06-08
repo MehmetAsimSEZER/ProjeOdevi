@@ -86,6 +86,9 @@ namespace Presantation.Controllers
         public async Task<IActionResult> Logout()
         {
             await _userService.LogOut();
+
+            HttpContext.Session.Remove("Cart");
+
             return RedirectToAction("Index", "Home");
         }
 

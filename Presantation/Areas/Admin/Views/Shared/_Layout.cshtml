@@ -24,7 +24,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-
+                <!-- Right navbar links -->
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="navbar-item">
+                        <a class="btn btn-outline-dark" asp-area="" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark" asp-area="" asp-controller="Home" asp-action="Index">Home Area</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>

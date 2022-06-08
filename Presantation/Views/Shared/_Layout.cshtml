@@ -46,18 +46,12 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="navbar-item">
-                            <a class="btn btn-sm btn-warning" asp-controller="Account" asp-action="ProfileDetails" asp-route-userName="@User.Identity.Name">View Profile</a>
+                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
                         </li>
-                        <li class="navbar-item">
-                            <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="Edit" asp-route-userName="@User.Identity.Name">View Profile</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a class="btn btn-sm btn-danger" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
-                        </li>
-                        @if (User.IsInRole("admin") || User.IsInRole("employee"))
+                        @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
                         {
-                            <li class="nav-item ml-2">
-                                <a class="btn btn-sm btn-primary mr-2" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Area</a>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Area</a>
                             </li>
                         }
                     }

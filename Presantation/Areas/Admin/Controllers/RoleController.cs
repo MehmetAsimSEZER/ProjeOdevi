@@ -66,8 +66,16 @@ namespace Presantation.Areas.Admin.Controllers
 
             foreach (User user in _userManager.Users)
             {
-                var list = await _userManager.IsInRoleAsync(user, role.Name) ? hasRole : hasNoRole;
-                list.Add(user);
+                bool exists = await _userManager.IsInRoleAsync(user, role.Name);
+
+                if (exists)
+                {
+                    hasRole.Add(user);
+                }
+                else
+                {
+                    hasNoRole.Add(user);
+                }
             }
 
             AssignedRoleToUserDTO model = new AssignedRoleToUserDTO()
@@ -100,5 +108,6 @@ namespace Presantation.Areas.Admin.Controllers
 
             return RedirectToAction("List");
         }
+
     }
 }
