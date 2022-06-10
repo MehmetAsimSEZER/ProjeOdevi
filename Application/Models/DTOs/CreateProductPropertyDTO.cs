@@ -1,4 +1,5 @@
-﻿using Domain.Enums;
+﻿using Application.Models.VMs;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,8 @@ namespace Application.Models.DTOs
         public int? PropertyId { get; set; }
         public DateTime CreateDate => DateTime.Now;
         public Status Status => Status.Active;
+
+        public List<ProductVM>? Products { get; set; }
+        public List<PropertyVM>? Properties { get; set; }  
     }
 }

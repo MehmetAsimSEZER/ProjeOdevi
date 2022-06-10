@@ -72,6 +72,20 @@ namespace Application.Services.ParentCategoryService
             return parent;
         }
 
+        public async Task<ParentCategoryVM> GetById(int id)
+        {
+            var parentCategory = await _unitOfWork.ParentCategoryRepository.GetFilteredFirstOrDefault(
+                selector : x => new ParentCategoryVM
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                },
+                expression: x => x.Id == id &&
+                                 x.Status != Status.Passive);
 
+            var model = _mapper.Map<ParentCategoryVM>(parentCategory);
+
+            return model;
+        }
     }
 }

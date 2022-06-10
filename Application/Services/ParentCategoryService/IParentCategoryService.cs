@@ -15,5 +15,6 @@ namespace Application.Services.ParentCategoryService
         Task Delete(int id);
         Task<List<ParentCategoryVM>> GetParentCategories();
         Task<bool> IsParentCategoryExsist(string name);
+        Task<ParentCategoryVM> GetById(int id);
     }
 }

@@ -1,0 +1,37 @@
+﻿@model UpdatePropertyDTO
+
+@{
+    ViewData["Title"] = "UpdateProperty";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        Update Property
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="UpdateProperty">
+                        <div class="form-group">
+                            <label asp-for="PropertyName"></label>
+                            <input asp-for="PropertyName" class="form-control" placeholder="PropertyName" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <a asp-action="ListProperty" class="btn btn-dark btn-sm">Back to List</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+

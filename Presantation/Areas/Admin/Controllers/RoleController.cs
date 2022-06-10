@@ -19,11 +19,10 @@ namespace Presantation.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
-
-
         public IActionResult List()
         {
-            return View(_roleManager.Roles);
+            var roles = this._roleManager.Roles;
+            return View(roles);
         }
 
         public IActionResult Create() 
@@ -54,6 +53,13 @@ namespace Presantation.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Create");
+        }
+
+
+        public async Task<IActionResult> Delete(IdentityRole role)
+        {
+            await _roleManager.DeleteAsync(role);
+            return RedirectToAction("List");
         }
 
 
@@ -108,6 +114,5 @@ namespace Presantation.Areas.Admin.Controllers
 
             return RedirectToAction("List");
         }
-
     }
 }

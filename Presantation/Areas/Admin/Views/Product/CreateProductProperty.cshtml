@@ -1,0 +1,57 @@
+﻿@model CreateProductPropertyDTO
+@{
+    ViewData["Title"] = "CreateProductProperty";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        Create Product Property
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CreateProductProperty" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Value"></label>
+                            <input asp-for="Value" class="form-control" placeholder="Value" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PropertyId">Choose a Property</label>
+                            <select asp-for="PropertyId" class="form-control">
+                                @foreach (var item in Model.Properties)
+                                {
+                                    <option value="@item.Id">@item.PropertyName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProductId">Choose a Product</label>
+                            <select asp-for="ProductId" class="form-control">
+                                @foreach (var item in Model.Products)
+                                {
+                                    <option value="@item.Id">@item.ProductName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm float-end" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <a asp-action="ListProductProperty" class="btn btn-dark btn-sm">Back to List</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>

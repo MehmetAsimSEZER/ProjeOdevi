@@ -1,5 +1,7 @@
-﻿using Domain.Entities;
+﻿using Application.Models.VMs;
+using Domain.Entities;
 using Domain.Enums;
+using Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +19,7 @@ namespace Application.DTOs
         public DateTime CreateDate => DateTime.Now;
 
         public Status Status => Status.Active;
+
+        public List<ParentCategoryVM>? parentCategories { get; set; }
     }
 }

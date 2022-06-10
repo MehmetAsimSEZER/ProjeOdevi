@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Models.VMs;
+using Domain.Entities;
 using Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,7 @@ namespace Application.DTOs
         public DateTime UpdateDate => DateTime.Now;
 
         public Status Status => Status.Modified;
+
+        public List<ParentCategoryVM> parentCategories { get; set; }
     }
 }
