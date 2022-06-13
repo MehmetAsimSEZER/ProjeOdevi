@@ -75,7 +75,7 @@ namespace Presantation.Areas.Admin.Controllers
             };
             foreach (var user in _userManager.Users)
             {
-                if (await _userManager.IsInRoleAsync(user, role.Name))
+                if (ModelState.IsValid)
                 {
                     model.Users.Add(user.UserName);
                 }
@@ -127,14 +127,20 @@ namespace Presantation.Areas.Admin.Controllers
             }
 
             var model = new List<UserRoleViewModel>();
-            foreach (var user in _userManager.Users)
+
+            IQueryable<AppUser> users = _userManager.Users;
+            List<AppUser> appUsers = users.ToList();
+            foreach (var user in appUsers)
             {
                 var userRoleViewModel = new UserRoleViewModel
                 {
                     UserId = user.Id,
                     UserName = user.UserName
                 };
-                if (await _userManager.IsInRoleAsync(user, role.Name))
+
+                bool isInRole = await _userManager.IsInRoleAsync(user, role.Name);
+
+                if (isInRole)
                 {
                     userRoleViewModel.IsSelected = true;
                 }
@@ -163,11 +169,11 @@ namespace Presantation.Areas.Admin.Controllers
 
                 IdentityResult result = null;
 
-                if (model[i].IsSelected && !(await _userManager.IsInRoleAsync(user,role.Name)))
+                if (model[i].IsSelected)
                 {
                     result = await _userManager.AddToRoleAsync(user, role.Name);
                 }
-                else if (!model[i].IsSelected && await _userManager.IsInRoleAsync(user, role.Name))
+                else if (!model[i].IsSelected)
                 {
                     result = await _userManager.RemoveFromRoleAsync(user, role.Name);
                 }
