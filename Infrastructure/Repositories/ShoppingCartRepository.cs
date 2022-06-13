@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
             get { return _shoppingCarts; } 
         }
 
-        public void AddCart(User user, Product product, int quantity)
+        public void AddCart(AppUser user, Product product, int quantity)
         {
             var currentCart = _shoppingCarts.FirstOrDefault(x => x.UserId == user.Id);
             if (currentCart != null)
@@ -63,7 +63,7 @@ namespace Infrastructure.Repositories
         }
 
 
-        public void DeleteCart(User user)
+        public void DeleteCart(AppUser user)
         {
             _shoppingCarts.RemoveAll(x => x.UserId == user.Id);
         }

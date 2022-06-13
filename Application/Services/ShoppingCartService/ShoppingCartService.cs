@@ -21,14 +21,14 @@ namespace Application.Services.ShoppingCartService
             _mapper = mapper;
         }
 
-        public async Task Add(User user, Product product, int quantity)
+        public async Task Add(AppUser user, Product product, int quantity)
         {
             _unitOfWork.ShoppingCartRepository.AddCart(user, product, quantity);
 
             await _unitOfWork.Commit();
         }
 
-        public async Task Delete(User user)
+        public async Task Delete(AppUser user)
         {
             _unitOfWork.ShoppingCartRepository.DeleteCart(user);
 

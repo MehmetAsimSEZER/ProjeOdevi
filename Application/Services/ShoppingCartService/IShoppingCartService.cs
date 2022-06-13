@@ -11,8 +11,8 @@ namespace Application.Services.ShoppingCartService
 {
     public interface IShoppingCartService
     {
-        Task Add(User user,Product product,int quantity);
-        Task Delete(User user);
+        Task Add(AppUser user,Product product,int quantity);
+        Task Delete(AppUser user);
         Task Total (ShoppingCart ShoppingCart);
     }
 

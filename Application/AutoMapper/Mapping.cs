@@ -23,13 +23,13 @@ namespace Application.AutoMapper
             CreateMap<UpdateCategoryDTO, CategoryVM>().ReverseMap();
 
 
-            CreateMap<User, CreateUserDTO>().ReverseMap();
-            CreateMap<User, UpdateUserDTO>().ReverseMap();
-            CreateMap<User, UserVM>().ReverseMap();
-            CreateMap<UpdateUserDTO, UserVM>().ReverseMap();
+            CreateMap<AppUser, CreateAppUserDTO>().ReverseMap();
+            CreateMap<AppUser, UpdateAppUserDTO>().ReverseMap();
+            CreateMap<AppUser, AppUserVM>().ReverseMap();
+            CreateMap<UpdateAppUserDTO, AppUserVM>().ReverseMap();
 
-            CreateMap<User, LoginDTO>().ReverseMap();
-            CreateMap<User, RegisterDTO>().ReverseMap();
+            CreateMap<AppUser, LoginDTO>().ReverseMap();
+            CreateMap<AppUser, RegisterDTO>().ReverseMap();
 
 
             CreateMap<Product, CreateProductDTO>().ReverseMap();

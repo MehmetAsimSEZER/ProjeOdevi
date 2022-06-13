@@ -1,4 +1,5 @@
-﻿@model string
+﻿
+@model CreateRoleViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -17,8 +18,8 @@
                     <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
-                            <label>Role Name</label>
-                            <input type="text" name="roleName" class="form-control" placeholder="Role Name" />
+                            <label>RoleName</label>
+                            <input type="text" name="RoleName" class="form-control" placeholder="RoleName" />
                         </div>
                         <div class="form-group">
                             <br />

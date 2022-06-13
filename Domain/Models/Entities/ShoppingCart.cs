@@ -13,7 +13,7 @@ namespace Domain.Models.Entities
     {
         public int Id { get; set; }
         public string UserId { get; set; }
-        public User User { get; set; }
+        public AppUser User { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }

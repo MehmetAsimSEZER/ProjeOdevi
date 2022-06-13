@@ -13,10 +13,10 @@ namespace Application.Services.UserService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper, SignInManager<User> signInManager, UserManager<User> userManager = null)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -24,15 +24,10 @@ namespace Application.Services.UserService
             _userManager = userManager;
         }
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
-        {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-        }
 
-        public async Task Create(CreateUserDTO model)
+        public async Task Create(CreateAppUserDTO model)
         {
-            var user = _mapper.Map<User>(model);
+            var user = _mapper.Map<AppUser>(model);
 
             await _unitOfWork.UserRepository.Create(user);
 
@@ -41,22 +36,22 @@ namespace Application.Services.UserService
 
         }
 
-        public async Task<UpdateUserDTO> GetById(string id)
+        public async Task<UpdateAppUserDTO> GetById(string id)
         {
-            UserVM user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
-                selector: x => new UserVM
+            AppUserVM user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
+                selector: x => new AppUserVM
                 {
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     Adress = x.Adress,
-                    Phone = x.Phone,
+                    PhoneNumber = x.PhoneNumber,
                     Email = x.Email,
                     UserName = x.UserName,
                 },
                 expression: x => x.Id == id &&
                             x.Status != Status.Passive);
 
-            UpdateUserDTO model = _mapper.Map<UpdateUserDTO>(user);
+            UpdateAppUserDTO model = _mapper.Map<UpdateAppUserDTO>(user);
 
             return model;
         }
@@ -70,25 +65,25 @@ namespace Application.Services.UserService
 
 
 
-        public async Task Update(UpdateUserDTO model)
+        public async Task Update(UpdateAppUserDTO model)
         {
-            var user = _mapper.Map<User>(model);
+            var user = _mapper.Map<AppUser>(model);
 
             _unitOfWork.UserRepository.Update(user);
 
             await _unitOfWork.Commit();
         }
 
-        public async Task<List<UserVM>> GetUsers()
+        public async Task<List<AppUserVM>> GetUsers()
         {
             var users = await _unitOfWork.UserRepository.GetFilteredList(
-                selector: x => new UserVM
+                selector: x => new AppUserVM
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     Adress = x.Adress,
-                    Phone = x.Phone,
+                    PhoneNumber = x.PhoneNumber,
                     Email = x.Email,
                     UserName = x.UserName,
                 },
@@ -125,7 +120,7 @@ namespace Application.Services.UserService
 
         public async Task<IdentityResult> Register(RegisterDTO model)
         {
-            var user = _mapper.Map<User>(model);
+            var user = _mapper.Map<AppUser>(model);
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -136,7 +131,7 @@ namespace Application.Services.UserService
             return result;
         }
 
-        public async Task UpdateUser(UpdateUserDTO model)
+        public async Task UpdateUser(UpdateAppUserDTO model)
         {
             var user = await _unitOfWork.UserRepository.GetDefault(x => x.Id == model.Id);
 

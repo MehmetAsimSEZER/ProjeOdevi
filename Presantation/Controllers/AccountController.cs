@@ -109,7 +109,7 @@ namespace Presantation.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Edit(UpdateUserDTO model)
+        public async Task<IActionResult> Edit(UpdateAppUserDTO model)
         {
             if (ModelState.IsValid)
             {

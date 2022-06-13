@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Infrastructure.Repositories
 {
 
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : BaseRepository<AppUser>, IUserRepository
     {
 
         public UserRepository(AppDbContext appDbContext) : base(appDbContext)

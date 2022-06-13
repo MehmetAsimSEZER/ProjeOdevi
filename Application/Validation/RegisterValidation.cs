@@ -18,7 +18,7 @@ namespace Application.Validation
 
             RuleFor(x => x.Adress).NotEmpty().WithMessage("Enter a Adress");
 
-            RuleFor(x => x.Phone).NotEmpty().WithMessage("Enter a Phone Number").MinimumLength(11).MaximumLength(11);
+            RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Enter a Phone Number").MinimumLength(11).MaximumLength(11);
 
             RuleFor(x => x.UserName).NotEmpty().WithMessage("Enter a username").MinimumLength(3).MaximumLength(50).WithMessage("Minimum 3, maximum 50 character");
 

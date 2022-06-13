@@ -12,13 +12,12 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    public class AppDbContext : IdentityDbContext<User>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Property> Properties { get; set; }

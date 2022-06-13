@@ -10,9 +10,9 @@ namespace Domain.Repositories
 {
     public interface IShoppingCartRepository : IBaseRepository<ShoppingCart>
     {
-        public void AddCart(User user,Product product,int quantity);
+        public void AddCart(AppUser user,Product product,int quantity);
 
-        public void DeleteCart(User user);
+        public void DeleteCart(AppUser user);
 
         public decimal Total(ShoppingCart ShoppingCart);
 

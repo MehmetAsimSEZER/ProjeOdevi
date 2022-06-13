@@ -24,7 +24,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 });
 
 
-builder.Services.AddIdentity<User, IdentityRole>(options =>
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedEmail = false;
     options.SignIn.RequireConfirmedPhoneNumber = false;

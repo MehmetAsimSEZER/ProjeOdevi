@@ -50,7 +50,7 @@ namespace API.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> PostUsers(CreateUserDTO user)
+        public async Task<IActionResult> PostUsers(CreateAppUserDTO user)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace API.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<IActionResult> PutUsers([FromBody] UpdateUserDTO user)
+        public async Task<IActionResult> PutUsers([FromBody] UpdateAppUserDTO user)
         {
             if (ModelState.IsValid)
             {

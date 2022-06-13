@@ -11,15 +11,15 @@ namespace Application.Services.UserService
 {
     public interface IUserService
     {
-        Task Create(CreateUserDTO model);
-        Task Update(UpdateUserDTO model);
+        Task Create(CreateAppUserDTO model);
+        Task Update(UpdateAppUserDTO model);
         Task Delete(string id);
         Task<IdentityResult> Register(RegisterDTO model);
         Task<SignInResult> Login(LoginDTO model);
         Task LogOut();
-        Task UpdateUser(UpdateUserDTO model);
-        Task<UpdateUserDTO> GetById(string id);
-        Task<List<UserVM>> GetUsers();
+        Task UpdateUser(UpdateAppUserDTO model);
+        Task<UpdateAppUserDTO> GetById(string id);
+        Task<List<AppUserVM>> GetUsers();
         Task<bool> IsUserExsist(string Email);
     }
 }
