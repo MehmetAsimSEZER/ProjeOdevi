@@ -27,6 +27,7 @@ namespace Application.AutoMapper
             CreateMap<AppUser, UpdateAppUserDTO>().ReverseMap();
             CreateMap<AppUser, AppUserVM>().ReverseMap();
             CreateMap<UpdateAppUserDTO, AppUserVM>().ReverseMap();
+            CreateMap<UpdateProfileDTO, AppUserVM>().ReverseMap();
 
             CreateMap<AppUser, LoginDTO>().ReverseMap();
             CreateMap<AppUser, RegisterDTO>().ReverseMap();

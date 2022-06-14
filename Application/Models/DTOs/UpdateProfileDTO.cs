@@ -1,5 +1,4 @@
-﻿using Application.Models.VMs;
-using Domain.Enums;
+﻿using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Models.DTOs
 {
-    public class UpdateAppUserDTO
+    public class UpdateProfileDTO
     {
         public string Id { get; set; }
         public string FirstName { get; set; }
@@ -19,7 +18,7 @@ namespace Application.Models.DTOs
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Email { get; set; }
-        public DateTime UpdateDate =>DateTime.Now;
-        public Status Status => Status.Modified;
+        public DateTime CreateDate => DateTime.Now;
+        public Status Status => Status.Active;
     }
 }

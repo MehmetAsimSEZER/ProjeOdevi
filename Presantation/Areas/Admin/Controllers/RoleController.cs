@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Presantation.Areas.Admin.Models.VMs;
@@ -6,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Presantation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class RoleController : Controller
     {
@@ -113,6 +115,7 @@ namespace Presantation.Areas.Admin.Controllers
                 return View(model);
             }           
         }
+
 
         [HttpGet]
         public async Task<IActionResult> EditUsersInRole(string roleId)

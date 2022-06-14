@@ -48,7 +48,10 @@
                         <li class="navbar-item">
                             <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
                         </li>
-                        @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                        <li class="nav-item ml-2">
+                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="ProfileEdit" asp-route-userName="@User.Identity.Name">Edit Profile</a>
+                        </li>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Employee"))
                         {
                             <li class="nav-item">
                                 <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Area</a>
@@ -60,7 +63,7 @@
                         <li class="navbar-item">
                             <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogIn">Giriş Yap</a>
                         </li>
-                        
+
                         <li class="navbar-item">
                             <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
                         </li>
@@ -82,8 +85,7 @@
     <header class="bg-dark py-2">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-2 fw-bolder">Shop in style</h1>
-                <p class="lead fw-normal text-white-20 mb-0">With this shop hompeage template</p>
+                <h2 class="display-2 fw-bolder">Shop in style</h2>
             </div>
         </div>
     </header>
@@ -92,7 +94,7 @@
 
     <!-- Footer-->
     <footer class="py-3 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        <div class="container"><p class="m-0 text-center text-white">Bizimle iletişime geçin.</p></div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

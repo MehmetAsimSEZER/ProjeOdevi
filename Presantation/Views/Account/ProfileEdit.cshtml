@@ -1,0 +1,61 @@
+﻿@model UpdateProfileDTO
+
+@{
+    ViewData["Title"] = "ProfileEdit";
+}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Profil Güncelle</h4>
+                </div>
+                <form asp-action="ProfileEdit">
+                    <div class="card-body">
+                        <div class="form-control">
+                            <label asp-for="UserName"></label>
+                            <input asp-for="UserName" class="form-control" placeholder="UserName" />
+                        </div>
+                        <div class="form-control">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Email" />
+                        </div>
+                        <div class="form-control">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" placeholder="Password" />
+                        </div>
+                        <div class="form-control">
+                            <label asp-for="ConfirmPassword"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword" />
+                        </div>
+                        <div class="form-control">
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control" placeholder="FirstName" />
+                        </div>
+                        <div class="form-control">
+                            <label asp-for="LastName"></label>
+                            <input asp-for="LastName" class="form-control" placeholder="LastName" />
+                        </div>
+                        <div class="form-control">
+                            <label asp-for="Adress"></label>
+                            <input asp-for="Adress" class="form-control" placeholder="Adress" />
+                        </div>
+                        <div class="form-control">
+                            <label asp-for="PhoneNumber"></label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber" />
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" value="Kaydet" class="btn btn-success btn-sm float-end mr-2 ml-2" />
+                        <a asp-action="LogIn" class="btn btn-primary btn-sm float-end mr-2 ml-2">Giriş Yap</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+

@@ -17,8 +17,8 @@ namespace Application.Services.UserService
         Task<IdentityResult> Register(RegisterDTO model);
         Task<SignInResult> Login(LoginDTO model);
         Task LogOut();
-        Task UpdateUser(UpdateAppUserDTO model);
-        Task<UpdateAppUserDTO> GetById(string id);
+        Task UpdateUser(UpdateProfileDTO model);
+        Task<UpdateProfileDTO> GetById(string id);
         Task<List<AppUserVM>> GetUsers();
         Task<bool> IsUserExsist(string Email);
     }

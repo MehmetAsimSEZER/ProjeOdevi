@@ -36,7 +36,7 @@ namespace Application.Services.UserService
 
         }
 
-        public async Task<UpdateAppUserDTO> GetById(string id)
+        public async Task<UpdateProfileDTO> GetById(string id)
         {
             AppUserVM user = await _unitOfWork.UserRepository.GetFilteredFirstOrDefault(
                 selector: x => new AppUserVM
@@ -51,7 +51,7 @@ namespace Application.Services.UserService
                 expression: x => x.Id == id &&
                             x.Status != Status.Passive);
 
-            UpdateAppUserDTO model = _mapper.Map<UpdateAppUserDTO>(user);
+            UpdateProfileDTO model = _mapper.Map<UpdateProfileDTO>(user);
 
             return model;
         }
@@ -131,7 +131,7 @@ namespace Application.Services.UserService
             return result;
         }
 
-        public async Task UpdateUser(UpdateAppUserDTO model)
+        public async Task UpdateUser(UpdateProfileDTO model)
         {
             var user = await _unitOfWork.UserRepository.GetDefault(x => x.Id == model.Id);
 
@@ -152,6 +152,11 @@ namespace Application.Services.UserService
                 {
                     user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
                     await _userManager.UpdateAsync(user);
+                }
+
+                if (model.PhoneNumber != null)
+                {
+                    await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
                 }
             }
         }

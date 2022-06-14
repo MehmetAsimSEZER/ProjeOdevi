@@ -92,7 +92,8 @@ namespace Presantation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<IActionResult> Edit(string userName)
+        [HttpGet]
+        public async Task<IActionResult> ProfileEdit(string userName)
         {
             if (userName == User.Identity.Name)
             {
@@ -109,9 +110,9 @@ namespace Presantation.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Edit(UpdateAppUserDTO model)
+        public async Task<IActionResult> ProfileEdit(UpdateProfileDTO model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 await _userService.UpdateUser(model);
                 TempData["Success"] = "Your profile has been edited..!";
@@ -120,7 +121,7 @@ namespace Presantation.Controllers
             else
             {
                 TempData["Error"] = "Your profile hasn't been edited..!";
-                return RedirectToAction("Edit");
+                return RedirectToAction("ProfileEdit");
             }
         }
     }

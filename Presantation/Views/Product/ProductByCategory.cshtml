@@ -7,28 +7,28 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-2" asp-controller="Product" asp-action="Index" asp-route-productId="@item.Id">
-            <div class="card">
-                <!-- Product image-->
+            <div class="col-2" asp-controller="Product" asp-action="Index" asp-route-productId="@item.Id">
+                <div class="card">
+                    <!-- Product image-->
             <img class="card-img-top" src="/media/İmages/@item.ImagePath" width="200" height="300" alt="...">
-                <!-- Product details-->
+                    <!-- Product details-->
             <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Product name-->
+                        <div class="text-center">
+                            <!-- Product name-->
                     <h5 class="fw-bolder">@item.ProductName</h5>
-                        <!-- Product price-->
+                            <!-- Product price-->
                     @item.Price.ToString("C2")
+                        </div>
                     </div>
-                </div>
-                <!-- Product actions-->
+                    <!-- Product actions-->
             <div class="card-footer">
-                    <div>
-                        <a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark mt-auto btn-sm addToCart">Sepete Ekle</a>
-                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark mt-auto btn-sm">Ürün İncele</a>
+                        <div>
+                            <a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark mt-auto btn-sm addToCart">Sepete Ekle</a>
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark mt-auto btn-sm">Ürün İncele</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     }
 </div>
 
@@ -37,7 +37,6 @@
     $(function() {
         $("a.addToCart").click(function(e) {
             e.preventDefault();
-
             let id = $(this).data("id");
             $.get('/cart/add/' + id, {}, function(data) {
                 $("div.cart").html(data);
@@ -46,4 +45,3 @@
     });
 </script>
 }
-
