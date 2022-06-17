@@ -1,7 +1,9 @@
 ﻿using Application.Extensions;
 using Application.Models.DTOs;
 using Application.Services.UserService;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presantation.Controllers
@@ -10,10 +12,12 @@ namespace Presantation.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, UserManager<AppUser> userManager)
         {
             _userService = userService;
+            _userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -92,7 +96,7 @@ namespace Presantation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ProfileEdit(string userName)
         {
             if (userName == User.Identity.Name)
@@ -109,19 +113,39 @@ namespace Presantation.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost,AllowAnonymous]
         public async Task<IActionResult> ProfileEdit(UpdateProfileDTO model)
         {
-            if (!ModelState.IsValid)
+            var user = await _userManager.FindByNameAsync(model.UserName);
+
+            if (user == null)
             {
-                await _userService.UpdateUser(model);
-                TempData["Success"] = "Your profile has been edited..!";
-                return RedirectToAction("Index", "Home");
+                TempData["Error"] = $"User with UserName = {model.UserName} cannot be found";
+                return View();
             }
             else
             {
-                TempData["Error"] = "Your profile hasn't been edited..!";
-                return RedirectToAction("ProfileEdit");
+                user.UserName = model.UserName;
+                user.Email = model.Email;
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.ConfirmPassword);
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Adress = model.Adress;
+                user.PhoneNumber = model.PhoneNumber;
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ProfileEdit");
+                }
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(String.Empty, item.Description);
+                    TempData["Warning"] = $"{item.Description}";
+                }
+                return View(model);
             }
         }
     }

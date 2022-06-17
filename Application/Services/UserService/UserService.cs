@@ -158,7 +158,7 @@ namespace Application.Services.UserService
                 {
                     await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
                 }
-            }
+            }          
         }
     }
 }
