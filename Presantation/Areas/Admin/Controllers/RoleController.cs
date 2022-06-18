@@ -194,5 +194,32 @@ namespace Presantation.Areas.Admin.Controllers
             }
             return RedirectToAction("Update", new { Id = roleId });
         }
+
+
+
+        public async Task<IActionResult> Delete(string id)
+        {
+
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                TempData["Error"] = $"Role with Id = {id} cannot be found";
+                return View();
+            }
+            else
+            {
+                var result = await _roleManager.DeleteAsync(role);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("List");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(String.Empty, error.Description);
+                    TempData["Warning"] = $"{error.Description}";
+                }
+                return View("List");
+            }
+        }
     }
 }
