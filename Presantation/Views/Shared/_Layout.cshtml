@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="~/media/css/styles.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 <body>
     <!-- Navigation-->
@@ -45,28 +47,28 @@
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="navbar-item">
-                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
-                        </li>
-                        <li class="nav-item ml-2">
-                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="ProfileEdit" asp-route-userName="@User.Identity.Name">Edit Profile</a>
-                        </li>
+                            <li class="navbar-item">
+                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
+                            </li>
+                            <li class="nav-item ml-2">
+                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="ProfileEdit" asp-route-userName="@User.Identity.Name">Edit Profile</a>
+                            </li>
                         @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Employee"))
                         {
-                            <li class="nav-item">
-                                <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Area</a>
-                            </li>
+                                    <li class="nav-item">
+                                        <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Area</a>
+                                    </li>
                         }
                     }
                     else
                     {
-                        <li class="navbar-item">
-                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogIn">Giriş Yap</a>
-                        </li>
+                            <li class="navbar-item">
+                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogIn">Giriş Yap</a>
+                            </li>
 
-                        <li class="navbar-item">
-                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
-                        </li>
+                            <li class="navbar-item">
+                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                            </li>
                     }
                 </ul>
                 <br />
@@ -93,8 +95,37 @@
 
 
     <!-- Footer-->
-    <footer class="py-3 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Bizimle iletişime geçin.</p></div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Hakkımızda</h4>
+                    <li><a href="#">Biz Kimiz</a></li>
+                    <li><a href="#">Kariyer</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </div>
+                <div class="footer-col">
+                    <h4>About us</h4>
+                    <li><a href="#">Who we are</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </div>
+                <div class="footer-col">
+                    <h4>Yardımcı Olalım</h4>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="#">Nasıl İade Edebilirim</a></li>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
