@@ -70,6 +70,8 @@ namespace Application.Services.ProductService
                     ImagePath = x.ImagePath,
                     CategoryName = x.Category.CategoryName,
                     ProductProperties = x.ProductProperties,
+                    Discount = x.Price - (x.Price / 100 * x.Discount),
+                    DiscountPrice = x.Price > 0 ? x.Price / 100 * x.Discount : 0
 
                 },
                 expression: x => x.Id == id && x.Status != Status.Passive);
@@ -91,6 +93,8 @@ namespace Application.Services.ProductService
                     ImagePath = x.ImagePath,
                     CategoryName = x.Category.CategoryName,
                     ProductProperties = x.ProductProperties,
+                    Discount = x.Price - (x.Price / 100 * x.Discount),
+                    DiscountPrice = x.Price > 0 ? x.Price / 100 * x.Discount : 0
 
                 },
                 expression: x => x.Status != Status.Passive, orderBy: x => x.OrderBy(x => x.ProductName));
@@ -119,6 +123,8 @@ namespace Application.Services.ProductService
                     ImagePath = x.ImagePath,
                     CategoryName = x.Category.CategoryName,
                     ProductProperties = x.ProductProperties,
+                    Discount = x.Price - (x.Price / 100 * x.Discount),
+                    DiscountPrice = x.Price > 0 ? x.Price / 100 * x.Discount : 0
                 },
                 expression: x => x.CategoryId == categoryId &&
                                 x.Status != Status.Passive,
@@ -140,9 +146,10 @@ namespace Application.Services.ProductService
                     ImagePath = x.ImagePath,
                     CategoryName = x.Category.CategoryName,
                     ProductProperties = x.ProductProperties,
-
+                    Discount = x.Price - (x.Price / 100 * x.Discount),
+                    DiscountPrice = x.Price > 0 ? x.Price / 100 * x.Discount : 0
                 },
-                expression: x => x.Id == id && x.Status != Status.Passive);
+                expression: x => x.Id == id && x.Status != Status.Passive );
 
             if (product.ProductProperties != null)
             {
@@ -155,6 +162,30 @@ namespace Application.Services.ProductService
                 });
 
             }
+
+            return product;
+
+        }
+
+
+
+        public async Task<List<ProductVM>> GetDiscountProducts()
+        {
+            var product = await _unitOfWork.ProductRepository.GetFilteredList(
+                selector: x => new ProductVM
+                {
+                    Id = x.Id,
+                    ProductName = x.ProductName,
+                    Description = x.Description,
+                    Price = x.Price,
+                    ImagePath = x.ImagePath,
+                    CategoryName = x.Category.CategoryName,
+                    ProductProperties = x.ProductProperties,
+                    Discount = x.Price / 100 * x.Discount,
+                    DiscountPrice = x.Price - (x.Price / 100 * x.Discount)
+
+                },
+                expression: x => x.Status != Status.Passive && x.Discount >0 , orderBy: x => x.OrderBy(x => x.ProductName));
 
             return product;
 

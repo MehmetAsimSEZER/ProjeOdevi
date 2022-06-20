@@ -18,7 +18,7 @@ namespace Presantation.Models
             ProductId = product.Id;
             ProductName = product.ProductName;
             Quantity = 1;
-            Price = product.Price;
+            Price = product.Price - (product.Price/100*product.Discount);
             Image = product.ImagePath;
         }
     }

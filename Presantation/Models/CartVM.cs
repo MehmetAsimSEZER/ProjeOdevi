@@ -1,6 +1,8 @@
-﻿namespace Presantation.Models
+﻿using Application.Models.VMs;
+
+namespace Presantation.Models
 {
-    public class CartVM
+    public class CartVM:ProductVM
     {
         public List<CartItem>? CartItems { get; set; }
 

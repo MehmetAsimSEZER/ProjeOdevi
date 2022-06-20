@@ -17,7 +17,33 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-12">
-                <h4 id="product-price">@Model.Price.ToString("C2")</h4>
+                    @if (@Model.DiscountPrice > 0)
+                    {
+                        <h3 class="fw-bolder">Sale Item
+                            <div class="d-flex justify-content-lg-start small text-warning">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div>
+                        </h3>
+                    }
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <h4 id="product-price">
+                    @if (@Model.DiscountPrice > 0)
+                    {
+                        <span class="text-muted text-decoration-line-through">@Model.Price.ToString("C2")</span>
+                        @Model.Discount.ToString("C2")
+                    }
+                    else
+                    {
+                        @Model.Price.ToString("C2")
+                    }
+                </h4>
             </div>
         </div>
         <div class="row mt-2">

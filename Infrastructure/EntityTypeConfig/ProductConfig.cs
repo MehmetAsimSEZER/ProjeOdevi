@@ -17,6 +17,7 @@ namespace Infrastructure.EntityTypeConfig
             builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.ImagePath).IsRequired(false);
             builder.Property(x => x.Price).HasPrecision(10,3).HasConversion<decimal>().IsRequired();
+            builder.Property(x => x.Discount).HasPrecision(10,3).HasConversion<decimal>().IsRequired();
 
             builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
 

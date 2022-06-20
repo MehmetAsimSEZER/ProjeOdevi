@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Services.ProductService;
+using Microsoft.AspNetCore.Mvc;
 using Presantation.Models;
 using System.Diagnostics;
 
@@ -7,10 +8,12 @@ namespace Presantation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductService productService)
         {
             _logger = logger;
+            _productService = productService;
         }
 
         public IActionResult Index()
@@ -18,9 +21,10 @@ namespace Presantation.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> DiscountedProducts()
         {
-            return View();
+            var discountProducts = await _productService.GetDiscountProducts();
+            return View(discountProducts);
         }       
 
 

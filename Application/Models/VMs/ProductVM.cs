@@ -14,6 +14,8 @@ namespace Application.Models.VMs
         public string ProductName { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public decimal Discount { get; set; }
+        public decimal DiscountPrice { get; set; }
         public string ImagePath { get; set; }
         public string CategoryName { get; set; }
         public List<ProductProperty>? ProductProperties { get; set; }

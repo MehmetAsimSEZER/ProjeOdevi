@@ -4,24 +4,45 @@
     ViewData["Title"] = "ProductByCategory";
 }
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-            <div class="col-2" asp-controller="Product" asp-action="Index" asp-route-productId="@item.Id">
-                <div class="card">
+
+<div class="container mb-lg-5 mt-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-3" asp-controller="Product" asp-action="Index" asp-route-productId="@item.Id">
+                <div class="card h-100">
                     <!-- Product image-->
-            <img class="card-img-top" src="/media/İmages/@item.ImagePath" width="200" height="300" alt="...">
+                <img class="card-img-top" src="/media/İmages/@item.ImagePath" width="200" height="300" alt="...">
                     <!-- Product details-->
-            <div class="card-body p-4">
+                <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                    <h5 class="fw-bolder">@item.ProductName</h5>
+                        <h5 class="fw-bolder">Sale Item</h5>
+                            <h5 class="fw-bolder">@item.ProductName</h5>
+                            @if (@item.DiscountPrice > 0)
+                            {
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                            }
                             <!-- Product price-->
-                    @item.Price.ToString("C2")
+                            @if (@item.DiscountPrice > 0)
+                            {
+                                <span class="text-muted text-decoration-line-through">@item.Price.ToString("C2")</span>
+                                @item.Discount.ToString("C2")
+                            }
+                            else
+                            {
+                                @item.Price.ToString("C2")
+                            }
                         </div>
                     </div>
                     <!-- Product actions-->
-            <div class="card-footer">
+                <div class="card-footer">
                         <div>
                             <a asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark mt-auto btn-sm addToCart">Sepete Ekle</a>
                             <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" data-id="@item.Id" class="btn btn-outline-dark mt-auto btn-sm">Ürün İncele</a>
@@ -29,8 +50,10 @@
                     </div>
                 </div>
             </div>
-    }
+        }
+    </div>
 </div>
+
 
 @section Scripts{
 <script>
