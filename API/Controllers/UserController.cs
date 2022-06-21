@@ -20,7 +20,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all Users
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -32,9 +32,9 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get User id information
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Must to type id</param>
         /// <returns></returns>
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetUser(string id)
@@ -45,9 +45,9 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Create a new User
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">Please check User in schemas table</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostUsers(CreateAppUserDTO user)
@@ -77,9 +77,9 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Update a User
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">Please check User in schemas table</param>
         /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> PutUsers([FromBody] UpdateAppUserDTO user)
@@ -100,9 +100,9 @@ namespace API.Controllers
 
 
         /// <summary>
-        /// 
+        /// Delete a User
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Must to type a id</param>
         /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteUsers(string id)

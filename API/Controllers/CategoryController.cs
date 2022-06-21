@@ -18,7 +18,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all categories
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -30,9 +30,9 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get category via id information
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Must to type id</param>
         /// <returns></returns>
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetCategory(int id)
@@ -43,9 +43,9 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Create a new category
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">Please check model in schemas table</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostCategories([FromBody] CreateCategoryDTO model)
@@ -75,9 +75,9 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Update a category
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">Please check model in schemas table</param>
         /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> PutCategories([FromBody] UpdateCategoryDTO model)
@@ -98,9 +98,9 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Delete a category
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Must to type a id</param>
         /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteCategories(int id)
