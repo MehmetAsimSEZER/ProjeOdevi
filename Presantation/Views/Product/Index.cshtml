@@ -16,17 +16,19 @@
                 <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                        <h5 class="fw-bolder">Sale Item</h5>
-                            <h5 class="fw-bolder">@item.ProductName</h5>
+                        <h5 class="fw-bolder">@item.ProductName</h5>
                             @if (@item.DiscountPrice > 0)
                             {
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                </div>
+                                <h5 class="fw-bolder">
+                                    Sale Item
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                </h5>
                             }
                             <!-- Product price-->
                             @if (@item.DiscountPrice > 0)
