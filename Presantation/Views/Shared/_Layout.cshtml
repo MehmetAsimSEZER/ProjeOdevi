@@ -47,28 +47,28 @@
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                     @if (User.Identity.IsAuthenticated)
                     {
-                            <li class="navbar-item">
-                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
-                            </li>
-                            <li class="nav-item ml-2">
-                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="ProfileEdit" asp-route-userName="@User.Identity.Name">Edit Profile</a>
-                            </li>
+                        <li class="navbar-item">
+                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogOut">@User.Identity.Name, log out</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="ProfileEdit" asp-route-userName="@User.Identity.Name">Edit Profile</a>
+                        </li>
                         @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Employee"))
                         {
-                                    <li class="nav-item">
-                                        <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Area</a>
-                                    </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Area</a>
+                            </li>
                         }
                     }
                     else
                     {
-                            <li class="navbar-item">
-                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogIn">Giriş Yap</a>
-                            </li>
+                        <li class="navbar-item">
+                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="LogIn">Giriş Yap</a>
+                        </li>
 
-                            <li class="navbar-item">
-                                <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
-                            </li>
+                        <li class="navbar-item">
+                            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                        </li>
                     }
                 </ul>
                 <br />
