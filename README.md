@@ -11,3 +11,8 @@ In the Admin section, the user can perform the necessary shopping transactions f
 While assigning authorization in this section can only be done by the Admin, adding ParentCategory, Category, Product, Property, ProductProperty, and deleting updates can be done by authorized persons who have access to the entire administration panel.
 Added products are dynamically assigned to Categorized pages, and no editing is required.
 The project, which I consider as a beginner level E-Commerce site, is open to development and innovations can be made as a loose couple when any design pattern is used in the developments.
+## Technologies
+- Visual Studio 2022
+- Microsoft SQL Server 2019
+- Postman
+- Swagger
