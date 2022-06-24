@@ -24,6 +24,7 @@
                         <div class="form-group">
                             <label asp-for="PropertyId">Choose a Property</label>
                             <select asp-for="PropertyId" class="form-control">
+                                  <option value="-1" selected>Seçiniz</option>
                                 @foreach (var item in Model.Properties)
                                 {
                                     <option value="@item.Id">@item.PropertyName</option>
@@ -34,6 +35,7 @@
                         <div class="form-group">
                             <label asp-for="ProductId">Choose a Product</label>
                             <select asp-for="ProductId" class="form-control">
+                                <option value="-1" selected>Seçiniz</option>
                                 @foreach (var item in Model.Products)
                                 {
                                     <option value="@item.Id">@item.ProductName</option>
