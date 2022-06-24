@@ -37,6 +37,11 @@ namespace Presantation.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (model.CategoryId == -1)
+                {
+                    TempData["Error"] = $"The product hasn't been added..!";
+                    return RedirectToAction("Create");
+                }
                 await _productService.Create(model);
                 TempData["Success"] = $"The {model.ProductName} has been added..!";
                 return RedirectToAction("List");
@@ -171,6 +176,11 @@ namespace Presantation.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (model.PropertyId == -1 || model.ProductId == -1)
+                {
+                    TempData["Error"] = $"The product hasn't been added..!";
+                    return RedirectToAction("CreateProductProperty");
+                }
                 await _productPropertyService.Create(model);
                 TempData["Success"] = $"The {model.Value} has been added..!";
                 return RedirectToAction("ListProductProperty");

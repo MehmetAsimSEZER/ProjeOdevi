@@ -40,9 +40,18 @@ namespace Presantation.Areas.Admin.Controllers
                 }
                 else
                 {
-                    await _categoryService.Create(model);
-                    TempData["Success"] = $"The {model.CategoryName} has been added..!";
-                    return RedirectToAction("List");
+                    if (model.ParentCategoryId == -1)
+                    {
+                        TempData["Error"] = $"The category hasn't been added..!";
+                        return RedirectToAction("Create");
+                    }
+                    else 
+                    {
+                        await _categoryService.Create(model);
+                        TempData["Success"] = $"The {model.CategoryName} has been added..!";
+                        return RedirectToAction("List");
+                    }
+
                 }
             }
             else
