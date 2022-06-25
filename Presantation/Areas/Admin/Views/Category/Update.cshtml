@@ -17,11 +17,12 @@
                     <form asp-action="Update">
                         <div class="form-group">
                             <label asp-for="CategoryName"></label>
-                            <input asp-for="CategoryName" class="form-control" placeholder="CategoryName" />
+                            <input asp-for="CategoryName" class="form-control" placeholder="@Model.CategoryName" />
                         </div>
                         <div class="form-group">
                             <label asp-for="ParentCategoryId">Choose a Parent Category</label>
                             <select asp-for="ParentCategoryId" class="form-control">
+                                <option value="-1" selected>Seçiniz</option>
                                 @foreach (var item in Model.parentCategories)
                                 {
                                     <option value="@item.Id">@item.Name</option>
