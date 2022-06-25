@@ -24,6 +24,8 @@ namespace Presantation.Areas.Admin.Controllers
             _propertyService = propertyService;
             _productPropertyService = productPropertyService;
         }
+
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             CreateProductDTO model = new CreateProductDTO();
@@ -60,9 +62,17 @@ namespace Presantation.Areas.Admin.Controllers
             return View(await _productService.GetProducts());
         }
 
+        [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            UpdateProductDTO model = new UpdateProductDTO();
+            var product = await _productService.GetById(id);
+            UpdateProductDTO model = new UpdateProductDTO()
+            {
+                ProductName = product.ProductName,
+                Description = product.Description,
+                Price = product.Price,
+                ImagePath = product.ImagePath
+            };
             model.Categories = await _categoryService.GetCategories();
 
             return View(model);
@@ -129,9 +139,15 @@ namespace Presantation.Areas.Admin.Controllers
             return View(await _propertyService.GetProperties());
         }
 
-        public async Task<IActionResult> UpdateProperty()
+        [HttpGet]
+        public async Task<IActionResult> UpdateProperty(int id)
         {
-            return View();
+            var property = await _propertyService.GetById(id);
+            UpdatePropertyDTO updateProperty = new UpdatePropertyDTO()
+            {
+                PropertyName = property.PropertyName,
+            };
+            return View(updateProperty);
         }
 
         [HttpPost]
@@ -198,10 +214,14 @@ namespace Presantation.Areas.Admin.Controllers
             return View(await _productPropertyService.Get());
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> UpdateProductProperty(int id)
         {
-            UpdateProductPropertyDTO model = new UpdateProductPropertyDTO();
+            var productProperty = await _productPropertyService.GetById(id);
+            UpdateProductPropertyDTO model = new UpdateProductPropertyDTO()
+            {
+                Value = productProperty.Value,
+            };
             model.Properties = await _propertyService.GetProperties();
             model.Products = await _productService.GetProducts();
 

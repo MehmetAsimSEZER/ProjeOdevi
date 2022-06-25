@@ -18,6 +18,7 @@ namespace Presantation.Areas.Admin.Controllers
             _parentCategoryService = parentCategoryService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             CreateCategoryDTO model = new CreateCategoryDTO();
@@ -67,10 +68,16 @@ namespace Presantation.Areas.Admin.Controllers
             return View(await _categoryService.GetCategories());
         }
 
+        [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            UpdateCategoryDTO model = new UpdateCategoryDTO();
-            model.parentCategories = await _parentCategoryService.GetParentCategories();
+            var category = await _categoryService.GetById(id);
+
+            UpdateCategoryDTO model = new UpdateCategoryDTO()
+            {
+                CategoryName = category.CategoryName,
+            };
+            model.parentCategories = await _parentCategoryService.GetParentCategories();            
 
             return View(model);
         }
@@ -138,9 +145,17 @@ namespace Presantation.Areas.Admin.Controllers
             return View(await _parentCategoryService.GetParentCategories());
         }
 
-        public async Task<IActionResult> UpdateParent()
+        [HttpGet]
+        public async Task<IActionResult> UpdateParent(int id)
         {
-            return View();
+            var parent = await _parentCategoryService.GetById(id);
+
+            UpdateParentCategoryDTO model = new UpdateParentCategoryDTO()
+            {
+                Name = parent.Name,
+            };
+
+            return View(model);
         }
 
         [HttpPost]
