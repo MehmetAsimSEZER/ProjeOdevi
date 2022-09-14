@@ -1,7 +1,9 @@
 using Application.IoC;
+using Application.Models.DTOs;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Domain.Entities;
+using FluentValidation.AspNetCore;
 using Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
