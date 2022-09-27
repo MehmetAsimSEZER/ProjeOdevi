@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,14 +30,16 @@ namespace Infrastructure
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new UserConfig());
-            builder.ApplyConfiguration(new CategoryConfig());
-            builder.ApplyConfiguration(new ProductConfig());
-            builder.ApplyConfiguration(new PropertyConfig());
-            builder.ApplyConfiguration(new ProductPropertyConfig());
-            builder.ApplyConfiguration(new ParentCategoryConfig());
-            builder.ApplyConfiguration(new ShoppingCartConfig());
-            builder.ApplyConfiguration(new ProductCartRelConfig());
+            //builder.ApplyConfiguration(new UserConfig());
+            //builder.ApplyConfiguration(new CategoryConfig());
+            //builder.ApplyConfiguration(new ProductConfig());
+            //builder.ApplyConfiguration(new PropertyConfig());
+            //builder.ApplyConfiguration(new ProductPropertyConfig());
+            //builder.ApplyConfiguration(new ParentCategoryConfig());
+            //builder.ApplyConfiguration(new ShoppingCartConfig());
+            //builder.ApplyConfiguration(new ProductCartRelConfig());
+
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);
         }
